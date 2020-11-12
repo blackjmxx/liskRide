@@ -1,0 +1,7 @@
+.icon-close, .icon-info {
+    position: absolute;
+    margin:10px;
+    color:white;
+    z-index: 1000;
+    right:0px;
+}

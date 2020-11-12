@@ -1,0 +1,175 @@
+.qrReader {
+    border: 0 solid transparent;
+    height: 100%;
+    width: 100%;
+    padding: 37% 20%;
+    position: relative;
+  }
+  .qrReader video {
+    border: 0 solid transparent;
+    height: 100%;
+    width: 100%;
+  }
+  
+  .amount-displayer {
+    position: relative;
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    width: 96px;
+    height: 96px;
+    background-color: rgb(76, 215, 132);
+    margin: 25px auto;
+    border-radius: 50%;
+  }
+  
+  .amount-displayer .wallet-amount {
+    font-size: 50px;
+    font-weight: 300;
+  }
+  
+  .amount-displayer .wallet-type {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    width: 24px;
+    height: 24px;
+    text-align: center;
+    line-height: 24px;
+    font-size: 16px;
+    font-weight: 300;
+    color: rgb(255, 255, 255);
+    background-color: rgb(5, 16, 57);
+    content: "€";
+    border-radius: 50%;
+  }
+  
+  .scanner-animation {
+    background: #4caf50;
+    box-shadow: 0 1px 0 0 rgba(0,0,0,.4);
+    width: 100%;
+    height: 2px;
+    position: absolute;
+    -webkit-transition: all .2s linear;
+    -moz-transition: all .2s linear;
+    transition: all .2s linear;
+    -webkit-animation: scanner 3s infinite linear;
+    -moz-animation: scanner 3s infinite linear;
+    -o-animation: scanner 3s infinite linear;
+    animation: scanner 3s infinite linear;
+  }
+  
+  @-webkit-keyframes scanner {
+    0% {
+        bottom: 100%
+    }
+    50% {
+        bottom: 0
+    }
+    to {
+        bottom: 100%
+    }
+  }
+  
+  @-moz-keyframes scanner {
+    0% {
+        bottom: 100%
+    }
+    50% {
+        bottom: 0
+    }
+    to {
+        bottom: 100%
+    }
+  }
+  
+  @-o-keyframes scanner {
+    0% {
+        bottom: 100%
+    }
+    50% {
+        bottom: 0
+    }
+    to {
+        bottom: 100%
+    }
+  }
+  
+  @keyframes scanner {
+    0% {
+        bottom: 100%
+    }
+    50% {
+        bottom: 0
+    }
+    to {
+        bottom: 100%
+    }
+  }
+  
+.icon-close, .icon-info {
+    position: absolute;
+    margin:10px;
+    color:white;
+    z-index: 1000;
+}
+
+.icon-info {
+    right:0px;
+}
+
+.info-label {
+    position: absolute !important;
+    z-index: 1000;
+    right: 45px;
+    top: 10px;
+}
+
+.scanner-overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-top: 45vw solid rgba(0,0,0,.4);
+    border-bottom: 45vw solid rgba(0,0,0,.4);
+    border-left: 20vw solid rgba(0,0,0,.4);
+    border-right: 20vw solid rgba(0,0,0,.4);;
+    top: 0;
+    z-index: 999;
+ 
+}
+
+.qrReader-text{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 30px;
+    color:white;
+    background: #191d21;
+    height:20%;
+    z-index: 1000;
+    text-align: center
+  }
+
+  .qrReader-text button{
+      margin:0 auto !important;
+  }
+
+  .scan-overlay-button{
+      position: absolute;
+      z-index: 999;
+      width: 100%;
+      text-align: center;
+      top:50px;
+  }
+
+  .scan-overlay-button button{
+      background: rgba(0,0,0,.3) !important;
+  }
+
+  .image-select-error-message{
+        position: absolute; 
+        bottom: 0;
+        width: 100%;
+  }

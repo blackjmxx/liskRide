@@ -1,0 +1,10 @@
+.bottom-menu {
+  
+}
+
+/* @media screen and (min-height: 735px) { */
+  .bottom-menu{
+    position: fixed;
+    bottom: 2em;
+  }
+/* } */

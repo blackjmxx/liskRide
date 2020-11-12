@@ -1,0 +1,114 @@
+.timelineContainer {
+  display: inline-block;
+  overflow-y: scroll;
+  max-height: 575px;
+  margin-top: 20px;
+}
+
+.timelineList {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.timelineItem {
+  width: 350px;
+  height: 4em;
+  margin-bottom: 0.05em;
+  margin-top: 0.05em;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: solid 1px darkgray;
+  border-bottom: none;
+  &:first-child {
+    .timelineCircle {
+      &::before {
+        width: 0px;
+        height: 0px;
+      }
+    }
+  }
+  &:last-child {
+    border-bottom: solid 1px darkgray;
+  }
+}
+
+.timelineItemBgColorEven {
+  background: #ffffff;
+}
+
+.timelineItemBgColorOdd {
+  background: #f3f3f3;
+}
+
+.timelineContent {
+  display: flex;
+  width: 85%;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 5px;
+}
+
+.timelineCircle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  position: relative;
+  background-color: #357df3;
+  color: white;
+  margin-left: 10px;
+  &::before {
+    display: block;
+    content: '';
+    position: absolute;
+    top: -22px;
+    left: 48%;
+    font-size: 16px;
+    width: 4px;
+    height: 26px;
+    background-color: inherit;
+    z-index: 0;
+  }
+}
+
+.timelineCircleMark {
+  position: absolute !important;
+  width: 20px;
+  height: 25px;
+}
+
+.timelineCircleIndex {
+  position: relative;
+  z-index: 1;
+  color: white;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.timelineCircleDisable {
+  background-color: darkgray;
+}
+
+.timelineInfo {
+  display: flex;
+  flex-direction: column;
+  text-align: right;
+  color: #a7a7a7;
+  font-weight: 600;
+}
+
+.timelineTitle {
+  margin-left: 10px;
+  font-weight: 700;
+  color: #000;
+}
+
+.timelineTitleColorDisable {
+  color: #8c8c8c;
+}
