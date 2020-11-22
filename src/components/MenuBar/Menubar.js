@@ -12,7 +12,6 @@ import {SvgIcon} from '../SvgIcon/SvgIcon';
 import {cardIcon} from '../../assets/icons/cardIcon';
 import {loginIcon} from '../../assets/icons/loginIcon';
 import {notificationIcon} from '../../assets/icons/notificationIcon';
-import {scanIcon} from '../../assets/icons/scanIcon';
 
 import {ActiveTitle, menuBarStyle, MenuLinkStyles, Title} from './styles';
 
@@ -44,12 +43,6 @@ class TabBarRow extends Component {
             path: '/home/car',
             name: 'car',
             label: <FormattedMessage id={"menu.car"} />,
-            icon: notificationIcon
-          },
-          {
-            path: '/home/transfert',
-            name: 'transfert',
-            label: <FormattedMessage id={"menu.transfert"} />,
             icon: notificationIcon
           },
           {

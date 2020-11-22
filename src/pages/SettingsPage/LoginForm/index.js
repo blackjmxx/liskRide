@@ -1,16 +1,12 @@
 import React, { Component } from "react";
 import { Mnemonic } from '@liskhq/lisk-passphrase';
 import { getAddressAndPublicKeyFromPassphrase } from '@liskhq/lisk-cryptography';
-
-import { LoadableGoogleLogin, LoadableFacebookLogin } from "./Loadable";
-// import AppleLogin from 'react-apple-login'
-
 import LoginTab from "./LoginTab/LoginTab";
 import RegisterTab from "./RegisterTab/RegisterTab";
 
 import "./styles.css";
 import { LoginRegisterHeader } from "../../../components/LoginRegisterHeader/LoginRegisterHeader";
-import {LoginViewContainer, TitleContainer, TitleBottomContent, ButtonContainer, BottomLoginContainer, ErrorInformationContent, ErrorContainer, LinkForgotPassword, WarningInformationContainer, IconContainer, WarningIcon, WarningImageContainer, WarningText, WarningContentContainer, PersonIcon } from "./style";
+import {LoginViewContainer, TitleContainer, TitleBottomContent, ButtonContainer, BottomLoginContainer, ErrorInformationContent, ErrorContainer, WarningInformationContainer, IconContainer, WarningIcon, WarningImageContainer, WarningText, WarningContentContainer, PersonIcon } from "./style";
 import MenuBar from '../../../components/MenuBar/Menubar';
 // import { RegisterPopup } from "../../../components/RegisterPopup/RegisterPopup";
 import warningIcon from '../../../assets/icons/warningIcon.svg';
@@ -37,7 +33,6 @@ class LoginForm extends Component {
   }
 
   handleRegister = () => {
-
     const { email, password, password2 }  = this.state;
 
     if (password !== password2) {
@@ -86,7 +81,6 @@ class LoginForm extends Component {
     
     return (
       <>
-      {/* {this.state.showRegisterModal && <RegisterPopup handleRegister={this.handleRegister} closeModalHandler={() => this.setState({ showRegisterModal: false })}/>} */}
       <LoginRegisterHeader tabs={this.tabs} changeTab={this.changeTab} activeTab={this.state.activeTab} />
       <LoginViewContainer>
       { this.isLoginTabActive()
@@ -119,7 +113,6 @@ class LoginForm extends Component {
             handleChange={this.handleChange}
             loginaddress={this.state.loginaddress}
             loginpassphrase={this.state.loginpassphrase} />
-          <LinkForgotPassword onClick={this.handleForgotPassword}><FormattedMessage id={"global.forgotPassword"} /></LinkForgotPassword>
         </>
         :
         <RegisterTab
@@ -132,13 +125,6 @@ class LoginForm extends Component {
         createPassPhrase={this.createPassPhrase}/>
        }
       <BottomLoginContainer>
-        <TitleContainer>
-          <TitleBottomContent>
-            <FormattedMessage id={"global.or"} /> {this.isLoginTabActive() ? <FormattedMessage id={"global.login"} /> : <FormattedMessage id={"global.register"} />} <FormattedMessage id={"paramsPage.with"} />
-          </TitleBottomContent>
-        </TitleContainer>
-        <ButtonContainer>
-        </ButtonContainer>
       </BottomLoginContainer>
       </LoginViewContainer>
       <MenuBar/>

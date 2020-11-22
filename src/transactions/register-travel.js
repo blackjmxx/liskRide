@@ -1,7 +1,6 @@
 const {
   BaseTransaction,
-  TransactionError,
-  utils,
+  TransactionError
 } = require("@liskhq/lisk-transactions");
 
 class RegisterTravelransaction extends BaseTransaction {

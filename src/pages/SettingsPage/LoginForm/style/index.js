@@ -10,13 +10,6 @@ export const LoginViewContainer = styled.div`
     align-items: center;
     background-color: ${({theme}) => theme.cyan10};
 `
-export const LinkForgotPassword = styled.div`
-    font-family: 'Avenir Next';
-    font-size: 16px;
-    line-height: 24px;
-    text-align: center;
-    color: ${({theme}) => theme.cyan};
-`
 export const BottomLoginContainer = styled.div`
     display: flex;
     width: 80%;
@@ -78,8 +71,8 @@ export const WarningIcon = styled(SemanticImage)`
 `
 export const PersonIcon = styled(SemanticImage)`
     display: flex;
-    width: 100%;
-    height: 80%;
+    width: 90%;
+    height: 90%;
 `
 export const WarningInformationContainer = styled.div`
     display: flex;
@@ -97,7 +90,7 @@ export const WarningInformationContainer = styled.div`
 export const WarningInformationContainer2 = styled.div`
     display: flex;
     flex-direction: row;
-    width: 87%;
+    width: 100%;
     height: 50%;
     margin-top: 5%;
     background-color: ${({theme}) => theme.yellow};
@@ -105,9 +98,33 @@ export const WarningInformationContainer2 = styled.div`
     align-content: flex-start;
     align-items: flex-start;
     border-radius: 8px;
+    padding: 2%;
 `
 
+export const WarningInformationContainer4 = styled.div`
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin-top: 5%;
+    justify-content: flex-start;
+    align-content: flex-start;
+    align-items: flex-start;
+    padding: 2%;
+`
 
+export const WarningInformationContainer3 = styled.div`
+    display: flex;
+    flex-direction: row;
+    width: 80%;
+    height: 50%;
+    margin-top: 5%;
+    background-color: ${({theme}) => theme.yellow};
+    justify-content: flex-start;
+    align-content: flex-start;
+    align-items: flex-start;
+    border-radius: 8px;
+    padding: 2%;
+`
 export const IconContainer = styled.div`
     display: flex;
     position: absolute;
@@ -166,4 +183,12 @@ export const CommonContainerView = styled.div`
     align-items: center;
     background-color: ${({theme}) => theme.cyan10};
     flex: 1;
+`
+
+export const ItemsContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 85%;
+  justify-content: flex-start;
+  align-items: flex-start;
 `

@@ -20,52 +20,6 @@ if ('function' === typeof importScripts) {
         blacklist: [/^\/_/, /\/[^\/]+\.[^\/]+$/],
       });
   
-  workbox.routing.registerRoute(
-    new RegExp('https://parseapi.back4app.com/functions/loadLoyaltyCard'),
-    // Uncomment below to see the error thrown from Cache Storage API.
-    //workbox.strategies.staleWhileRevalidate(),
-    async ({
-      event
-    }) => {
-      return staleWhileRevalidate(event);
-    },
-    'POST'
-  );
-  workbox.routing.registerRoute(
-    new RegExp('https://parseapi.back4app.com/functions/loadRewardSteps'),
-    // Uncomment below to see the error thrown from Cache Storage API.
-    //workbox.strategies.staleWhileRevalidate(),
-    async ({
-      event
-    }) => {
-      return staleWhileRevalidate(event);
-    },
-    'POST'
-  );
-  workbox.routing.registerRoute(
-    new RegExp('https://parseapi.back4app.com/functions/loadStamps'),
-    // Uncomment below to see the error thrown from Cache Storage API.
-    //workbox.strategies.staleWhileRevalidate(),
-    async ({
-      event
-    }) => {
-      return staleWhileRevalidate(event);
-    },
-    'POST'
-  );
-  
-  workbox.routing.registerRoute(
-    new RegExp('https://parseapi.back4app.com/classes/Card'),
-    // Uncomment below to see the error thrown from Cache Storage API.
-    //workbox.strategies.staleWhileRevalidate(),
-    async ({
-      eventaction
-    }) => {
-      return staleWhileRevalidate(event);
-    },
-    'POST'
-  );
-  
   async function staleWhileRevalidate(event) {
     let promise = null;
     let cachedResponse = await getCache(event.request.clone());

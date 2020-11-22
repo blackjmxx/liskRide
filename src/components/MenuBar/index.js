@@ -6,11 +6,8 @@ import {Item, Menu} from 'semantic-ui-react';
 
 import {Link, withRouter} from 'react-router-dom';
 
-import { FormattedMessage } from 'react-intl';
-
 import {SvgIcon} from '../icons';
 import {cardIcon} from '../icons/cardIcon';
-import {giftIcon} from '../icons/giftIcon';
 import {loginIcon} from '../icons/loginIcon';
 import {notificationIcon} from '../icons/notificationIcon';
 import {scanIcon} from '../icons/scanIcon';

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { TermsPoliciesLink, RegisterInputsContainer, InputRegister, ButtonContainer, InputRegisterContainer, SecondInputRegisterContainer } from './style/index.js'
-import { ToggleButtonContainer, Icon } from '../LoginTab/style';
+import { TermsPoliciesLink, RegisterInputsContainer, InputRegister, ButtonContainer, InputRegisterContainer, SecondInputRegisterContainer } from '../../../../components/common/styles'
+import { ToggleButtonContainer2, Icon } from '../../../../components/common/styles';
 import eyeShowIcon from '../../../../assets/icons/eyeShowIcon.svg';
 import eyeHideIcon from '../../../../assets/icons/eyeHideIcon.svg';
 import { FormattedMessage } from 'react-intl';
@@ -32,13 +32,13 @@ const RegisterTab = props => {
             />
           {showPassword 
               ?
-              <ToggleButtonContainer onClick={() => setShowPassword(!showPassword)}>
+              <ToggleButtonContainer2 onClick={() => setShowPassword(!showPassword)}>
                 <Icon src={eyeShowIcon} />
-              </ToggleButtonContainer>
+              </ToggleButtonContainer2>
               :
-              <ToggleButtonContainer onClick={() => setShowPassword(!showPassword)}>
+              <ToggleButtonContainer2 onClick={() => setShowPassword(!showPassword)}>
                 <Icon src={eyeHideIcon} />
-              </ToggleButtonContainer>
+              </ToggleButtonContainer2>
             }
       </SecondInputRegisterContainer>
       <InputRegisterContainer>

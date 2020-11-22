@@ -27,7 +27,50 @@ class BookTravelransaction extends BaseTransaction {
 
   validateAsset() {
     const errors = [];
-    
+    if (!this.asset.passengerId || typeof this.asset.passengerId !== 'string') {
+      errors.push(
+          new TransactionError(
+              'Invalid "asset.passengerId" defined on transaction',
+              this.id,
+              '.asset.passengerId',
+              this.asset.passengerId
+          )
+      );
+  }
+  if (!this.asset.carId || typeof this.asset.carId !== 'string') {
+      errors.push(
+          new TransactionError(
+              'Invalid "asset.carId" defined on transaction',
+              this.id,
+              '.asset.carId',
+              this.asset.carId
+          )
+      );
+  }
+  if (!this.asset.travelId || typeof this.asset.travelId !== 'string') {
+      errors.push(
+          new TransactionError(
+              'Invalid "asset.travelId" defined on transaction',
+              this.id,
+              '.asset.travelId',
+              this.asset.travelId,
+              'A string value'
+          )
+      );
+  }
+
+  //todo must be transform into number
+    if (!this.asset.seatCount || typeof this.asset.seatCount !== 'string') {
+      errors.push(
+          new TransactionError(
+              'Invalid "asset.seatCount" defined on transaction',
+              this.id,
+              '.asset.seatCount',
+              this.asset.seatCount,
+              'A string value'
+          )
+      );
+  }
 
     return errors;
   }

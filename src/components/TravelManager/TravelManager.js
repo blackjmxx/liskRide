@@ -4,16 +4,19 @@ import CalendarModal from "../../components/CalendarModal/CalendarModal";
 import Moment from "moment";
 import { Mnemonic } from '@liskhq/lisk-passphrase';
 import { getAddressAndPublicKeyFromPassphrase } from '@liskhq/lisk-cryptography';
-import ShortUniqueId from 'short-unique-id';
+import { getUser2 } from "../../utils/storage";
+import { networkIdentifier , dateToLiskEpochTimestamp} from "../../utils";
 
 import {
   Input,
   ToggleButtonContainer,
-  Icon2,
+  IconForm,
   SecondInputContainer,
   LoginInputsContainer,
   ButtonContainer,
-} from "../HomePage/styles";
+  IconContainer,
+  Icon
+} from "../../components/common/styles";
 import { api } from '../../components/Api';
 
 import BlueButtonLoading from "../../components/Buttons/BlueButtonLoading";
@@ -21,7 +24,6 @@ import RegisterTravelTransaction from "../../transactions/register-travel";
 
 import "react-calendar/dist/Calendar.css";
 import "./style/calendar.css";
-import { Title, IconContainer, Icon } from "../ForgotPassword/style";
 import { CommonContainerView } from "../common/commonContainer";
 import { Link } from "react-router-dom";
 import closeIcon from "../../assets/icons/closeIcon.svg";
@@ -29,26 +31,6 @@ import { FormattedMessage } from "react-intl";
 import $ from "jquery";
 import { connect } from "react-redux";
 import calendar from "../../assets/icons/calendar.svg";
-import * as cryptography from '@liskhq/lisk-cryptography';
-import {
-  loadLoyaltyCard,
-  fetchInitLoyaltyCard,
-  loadCachedLoyaltyCard,
-  loadLoyaltyFakeCard,
-  changeQrMode,
-  addStampByValidationLink,
-  closeValidationModal,
-  addStampByMagicStamp,
-} from "../../modules/home/actions";
-
-const networkIdentifier = cryptography.getNetworkIdentifier(
-  "23ce0366ef0a14a91e5fd4b1591fc880ffbef9d988ff8bebf8f3666b0c09597d",
-  "Lisk",
-);
-
-const dateToLiskEpochTimestamp = date => (
-  Math.floor(new Date(date).getTime() / 1000) - Math.floor(new Date(Date.UTC(2016, 4, 24, 17, 0, 0, 0)).getTime() / 1000)
-);
 
 const date = new Date();
 
@@ -61,6 +43,8 @@ class TravelManager extends Component {
     pricePerSeat: 0,
     value: new Date(),
     showCalendarModal: false,
+    loading:false,
+    error:{}
   };
   closeScannerPage = () => {
     this.props.history.push("/home/travel");
@@ -97,15 +81,12 @@ class TravelManager extends Component {
   };
 
   addTravel = () => {
-    
+    this.setState({loading:true})
     const { pickUpLocation, pickUpDate, availableSeatCount, pricePerSeat, destination} = this.state;
 
-    let accounts = {} // retrieve accoun
-    let {user} = this.props // retrieve accoun
-    const uid = new ShortUniqueId();
     let registerpassphrase = Mnemonic.generateMnemonic();
-    const { address, publicKey } = getAddressAndPublicKeyFromPassphrase(registerpassphrase);
-    
+    const { address } = getAddressAndPublicKeyFromPassphrase(registerpassphrase);
+    let user = JSON.parse(getUser2());
     const registerTravelTransaction = new RegisterTravelTransaction({
       asset: {
         carId : user.address,
@@ -124,13 +105,11 @@ class TravelManager extends Component {
     api.transactions
       .broadcast(registerTravelTransaction.toJSON())
       .then((response) => {;
-        console.log("++++++++++++++++ API Response +++++++++++++++++");
-        console.log(response.data);
-        console.log("++++++++++++++++ Transaction Payload +++++++++++++++++");
-        console.log(registerTravelTransaction.stringify());
-        console.log("++++++++++++++++ End Script +++++++++++++++++");
+        this.setState({loading:false})
+        this.props.history.push("/home/travel");
       })
       .catch((err) => {
+        this.setState({loading:false, error:err})
         console.log(JSON.stringify(err.errors, null, 2));
       });
   }
@@ -146,7 +125,7 @@ class TravelManager extends Component {
             }
           ></CalendarModal>
         )}
-        <Link to="/home">
+        <Link to="/home/travel">
           <IconContainer>
             <Icon src={closeIcon} />
           </IconContainer>
@@ -219,7 +198,7 @@ class TravelManager extends Component {
               placeholder="pick up date"
             />
             <ToggleButtonContainer>
-              <Icon2 src={calendar} />
+              <IconForm src={calendar} />
             </ToggleButtonContainer>
           </SecondInputContainer>
           <SecondInputContainer>
@@ -231,7 +210,7 @@ class TravelManager extends Component {
               placeholder="Price per seat"
             />
             <ToggleButtonContainer>
-              <Icon2 src={calendar} />
+              <IconForm src={calendar} />
             </ToggleButtonContainer>
           </SecondInputContainer>
           <SecondInputContainer>
@@ -241,10 +220,10 @@ class TravelManager extends Component {
               max={6}
               onChange={this.handleChange}
               value={this.state.availableSeatCount}
-              placeholder="Price per seat"
+              placeholder="Seat count"
             />
             <ToggleButtonContainer>
-              <Icon2 src={calendar} />
+              <IconForm src={calendar} />
             </ToggleButtonContainer>
           </SecondInputContainer>
           <ButtonContainer>

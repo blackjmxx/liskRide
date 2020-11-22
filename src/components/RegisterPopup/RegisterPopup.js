@@ -1,7 +1,7 @@
 import React from "react";
 import { PopupContainer, ButtonContainer, PopupContentContainer, Image, Text, Icon, IconContainer } from "./style";
 import personBlue from "../../assets/images/personBlue.svg";
-import { BlueButton } from '../../pages/SettingsPage/LoginForm/LoginTab/style'
+import { BlueButton } from '../../components/common/styles'
 import closeIcon from "../../assets/icons/closeIcon.svg";
 import { PopupViewContainer } from "../popup/style";
 import '../popup/index.scss';

@@ -1,17 +1,20 @@
 import React , { Component }from "react";
 import { FormattedMessage } from 'react-intl';
-import { User } from "parse";
+import BlueButtonLoading from "../../components/Buttons/BlueButtonLoading";
 import { LogoutPopup } from "../../components/LogoutPopup/LogoutPopup";
-import { BlueButton } from "./LoginForm/LoginTab/style";
+import { BlueButton } from "../../components/common/styles";
+import {
+  WarningInformationContainer4,
+  IconContainer,
+  ItemsContainer
+} from "../SettingsPage/LoginForm/style";
 
-import { CardsContainer } from "../../components/HomePage/styles";
+import { UserInfoContainer } from "../../components/common/styles";
 import { removeUser } from '../../utils/storage';
-
 import {
   UserInformationContainer,
   TitleContainer,
   TopInformationContainer,
-  IconContainer,
   Title,
   ImageContainer,
   Image,
@@ -36,15 +39,11 @@ class Informations extends Component {
     handleLogout = () => {
       if (!this.state.showLogoutModal) {
         this.setState({ showLogoutModal: true });
-  
         return;
       }
-  
-      User.logOut().then(() => {
-        removeUser()
-        this.props.history.push("/home/params");
-        this.setState({ showLogoutModal: false });
-      });
+      this.props.history.push("/home/params");
+      this.setState({ showLogoutModal: false });
+      removeUser()
     };
   
     render() {
@@ -66,8 +65,12 @@ class Informations extends Component {
               </ContentInformation>
             </InformationItemContainer>
             <InformationItemContainer>
-              <HeaderInfromation><FormattedMessage id={"paramsPage.firstName"} /></HeaderInfromation>
-              <ContentInformation>{user.name}</ContentInformation>
+              <HeaderInfromation><FormattedMessage id={"paramsPage.numberPlate"} /></HeaderInfromation>
+              <ContentInformation>{user.numberPlate}</ContentInformation>
+            </InformationItemContainer>
+            <InformationItemContainer>
+              <HeaderInfromation><FormattedMessage id={"paramsPage.carModel"} /></HeaderInfromation>
+              <ContentInformation>{user.carModel}</ContentInformation>
             </InformationItemContainer>
             <InformationItemContainer>
               <HeaderInfromation><FormattedMessage id={"paramsPage.balance"} /></HeaderInfromation>
@@ -98,8 +101,18 @@ const UserInformations = (props) => {
           <Image src={personGreen} />
         </ImageContainer>
       </TopInformationContainer>
-      <CardsContainer>
-      </CardsContainer>
+      <UserInfoContainer>
+      <ItemsContainer>
+      <WarningInformationContainer4>
+              <BlueButtonLoading
+                  color={'#F1C310'}
+                  onClick={() => props.history.push('/home/car/manage')}
+                >
+                  <FormattedMessage id={"paramsPage.manageCar"} />
+            </BlueButtonLoading>
+        </WarningInformationContainer4>
+      </ItemsContainer>
+      </UserInfoContainer>
       <InfomationsContainer>
         <Informations {...props} />
       </InfomationsContainer>

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Redirect, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import * as cryptography from '@liskhq/lisk-cryptography';
 import { api } from '../../components/Api';
 import Menubar from "../../components/MenuBar/Menubar";
@@ -7,7 +7,7 @@ import BlueButtonLoading from "../../components/Buttons/BlueButtonLoading";
 import calendar from "../../assets/icons/calendar.svg";
 import { IconContainer, Icon } from "../../components/RegisterPopup/style";
 import closeIcon from "../../assets/icons/closeIcon.svg";
-
+import { networkIdentifier , dateToLiskEpochTimestamp} from "../../utils";
 
 import RegisterCarTransaction from "../../transactions/register-car";
 
@@ -22,25 +22,13 @@ import {
 
 // import IntroSlider from "react-intro-slider";
 import {
-  // Icon,
-  // ShortcutContainer,
-  // ShortcutContent,
   HomeContainer,
-  // BackgroundCircle,
-  // StampCardDetails,
-  // CardsContainer
 } from "./styles";
 import "./styles/index.scss";
 // import shortcutIcon from "../../assets/icons/shortcutIcon.svg";
 // import shortcutIconAndroid from "../../assets/icons/shortcutIconAndroid.svg";
 // import { Theme } from "../Theme";
-import GlobalRequireAuth from "../../pages/SettingsPage/GlobalRequireAuth";
-import { FormattedMessage, injectIntl } from "react-intl";
-
-const networkIdentifier = cryptography.getNetworkIdentifier(
-  "23ce0366ef0a14a91e5fd4b1591fc880ffbef9d988ff8bebf8f3666b0c09597d",
-  "Lisk",
-);
+import { FormattedMessage } from "react-intl";
 
 const dateToLiskEpochTimestamp = date => (
   Math.floor(new Date(date).getTime() / 1000) - Math.floor(new Date(Date.UTC(2016, 4, 24, 17, 0, 0, 0)).getTime() / 1000)
@@ -74,7 +62,6 @@ class CarPage extends Component {
   handleCreate = () => {
 
     const {numberPlate,carModel} = this.state;
-    let accounts = {} // retrieve accoun
     let {user} = this.props // retrieve accoun
     const registerCarTransaction = new RegisterCarTransaction({
       asset: {
@@ -91,11 +78,6 @@ class CarPage extends Component {
     api.transactions
       .broadcast(registerCarTransaction.toJSON())
       .then((response) => {
-        // res.app.locals.payload = {
-        //   res: response.data,
-        //   tx: registerCarTransaction.toJSON(),
-        // };
-        console.log("++++++++++++++++ API Response +++++++++++++++++");
         console.log(response.data);
         console.log("++++++++++++++++ Transaction Payload +++++++++++++++++");
         console.log(registerCarTransaction.stringify());
@@ -114,7 +96,6 @@ class CarPage extends Component {
   handleRemove = () => {
 
     const {numberPlate,carModel} = this.state;
-    let accounts = {} // retrieve accoun
     let {user} = this.props // retrieve accoun
     const registerCarTransaction = new RegisterCarTransaction({
       asset: {
@@ -131,10 +112,6 @@ class CarPage extends Component {
     api.transactions
       .broadcast(registerCarTransaction.toJSON())
       .then((response) => {
-        // res.app.locals.payload = {
-        //   res: response.data,
-        //   tx: registerCarTransaction.toJSON(),
-        // };
         console.log("++++++++++++++++ API Response +++++++++++++++++");
         console.log(response.data);
         console.log("++++++++++++++++ Transaction Payload +++++++++++++++++");
@@ -143,11 +120,6 @@ class CarPage extends Component {
       })
       .catch((err) => {
         console.log(JSON.stringify(err.errors, null, 2));
-        // res.app.locals.payload = {
-        //   res: err,
-        //   tx: registerCarTransaction.toJSON(),
-        // };
-        // res.redirect("/payload");
       });
   };
 

@@ -1,8 +1,6 @@
 import React, { Component } from "react";
-import { User } from "parse";
-import { getCardId } from "../../utils/storage";
+
 import Loadable from 'react-loadable';
-import IntroSlider from "react-intro-slider";
 import {
   setClientManifest,
   getUser2
@@ -10,20 +8,6 @@ import {
 
 import MenuBar from "../../components/MenuBar/Menubar";
 import RequireAuth from "./RequireAuth";
-
-import {
-  title,
-  nextButton,
-  skipButton,
-  dotActive,
-  dotInactive,
-  description,
-  slideStyle,
-  sliderStyle,
-} from "../../components/HomePage/styles";
-import { FormattedMessage } from 'react-intl';
-
-const UserParse = User.extend("User");
 
 const UserInformationLoadable = Loadable({
   loader: () => import('./UserInformations'),
@@ -33,7 +17,6 @@ class SettingsPage extends Component {
   state = {
   };
   componentDidMount = () => {
-    const { fakeId } = this.props;
     UserInformationLoadable.preload();
     let user = JSON.parse(getUser2());
     
@@ -41,10 +24,6 @@ class SettingsPage extends Component {
       this.props.receiveUserLogIn(JSON.parse(getUser2()));
       this.props.loadUserBalance(user.address)
     }
-  };
-
-  handleSelectCard = index => {
-    this.props.selectAndChangeCardId(index);
   };
 
   installAppHandler = () => {
@@ -63,7 +42,7 @@ class SettingsPage extends Component {
     return (
       <>
         <RequireAuth {...this.props}>
-          <UserInformationLoadable {...this.props} handleSelectCard={this.handleSelectCard}/> 
+          <UserInformationLoadable {...this.props} /> 
           <MenuBar />
         </RequireAuth>
       </>

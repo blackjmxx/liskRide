@@ -1,15 +1,11 @@
 import React, { Component } from "react";
-import { Redirect, Link } from "react-router-dom";
-import AlgoliaPlaces from "algolia-places-react";
+import { Link } from "react-router-dom";
+import Moment from "react-moment";
 import Menubar from "../../components/MenuBar/Menubar";
-import BlueButtonLoading from "../../components/Buttons/BlueButtonLoading";
-import pin from "../../assets/icons/pin.svg";
-import calendar from "../../assets/icons/calendar.svg";
-import seat from "../../assets/icons/seat.svg";
 import warningIcon from "../../assets/icons/warningIcon.svg";
 import personImg from "../../assets/images/person.svg";
 import {
-  WarningInformationContainer2,
+  WarningInformationContainer3,
   IconContainer,
   WarningIcon,
   WarningText,
@@ -17,19 +13,6 @@ import {
   PersonIcon,
   WarningImageContainer,
 } from "../SettingsPage/LoginForm/style";
-import Moment from "react-moment";
-
-import {
-  Input,
-  ButtonContainer,
-  SecondInputContainer,
-  LoginInputsContainer,
-  ButtonContainer2,
-  ToggleButtonContainer,
-  Icon2,
-} from "./styles";
-
-// import IntroSlider from "react-intro-slider";
 
 import {
   GiftItemContainer,
@@ -39,16 +22,13 @@ import {
   TimeoutContentContainer,
   ItemsContainer,
   NotificationsViewContainer,
-} from "./styles2";
+} from "../../components/common/styles";
+
 import { Content, Title } from "../../components/NotificationItem/style";
 
 import "./styles/index.scss";
-// import shortcutIcon from "../../assets/icons/shortcutIcon.svg";
-// import shortcutIconAndroid from "../../assets/icons/shortcutIconAndroid.svg";
-import { User } from "parse";
-// import { Theme } from "../Theme";
-import GlobalRequireAuth from "../../pages/SettingsPage/GlobalRequireAuth";
-import { FormattedMessage, injectIntl } from "react-intl";
+
+import { FormattedMessage } from "react-intl";
 
 const GifItem = ({ name, description, imageUrl, expireAt, handleUseGift }) => (
   <GiftItemContainer onClick={() => handleUseGift()}>
@@ -110,7 +90,7 @@ class InfosPage extends Component {
                 width: "100%",
               }} to={"/home/car"}>
               {" "}
-              <WarningInformationContainer2>
+              <WarningInformationContainer3>
                 <IconContainer>
                   <WarningIcon src={warningIcon} />
                 </IconContainer>
@@ -122,7 +102,7 @@ class InfosPage extends Component {
                 <WarningImageContainer>
                   <PersonIcon src={personImg} />
                 </WarningImageContainer>
-              </WarningInformationContainer2>
+              </WarningInformationContainer3>
             </Link>
             {mytravels.map((travel, i) => {
               return (

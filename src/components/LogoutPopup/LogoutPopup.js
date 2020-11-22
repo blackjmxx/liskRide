@@ -1,6 +1,6 @@
 import React from "react";
 import { Text, LogoutPopupContent, LogoutPopupContainer, ButtonContainer } from "./style";
-import { BlueButton } from '../../pages/SettingsPage/LoginForm/LoginTab/style'
+import { BlueButton } from '../../components/common/styles'
 import closeIcon from "../../assets/icons/closeIcon.svg";
 import { IconContainer, Icon } from "../RegisterPopup/style";
 import { PopupViewContainer } from "../popup/style";

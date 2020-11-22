@@ -5,25 +5,21 @@ import { TransitionGroup, CSSTransition } from 'react-transition-group'
 
 import Home from '../../containers/Home'
 import Settings from '../../containers/Settings'
-import CarSettings from '../../containers/CarSettings'
-
-import TransfertPage from '../../pages/TransfertPage'
 import InfosPage from '../../pages/InfosPage'
 import TravelResuls from '../../pages/TravelResuls'
 import TravelPage from '../../pages/TravelPage'
-import CarPage from '../../pages/CarPage'
-
-
+import TravelPageDriver from '../../pages/TravelPageDriver'
 
 import { addLocaleData } from 'react-intl'
 import { Provider } from 'react-redux'
 import {IntlProvider} from "react-intl";
 import CarManager from '../CarManager/CarManager'
 import TravelManager  from '../TravelManager/TravelManager'
+import TravelEnd  from '../TravelEnd/TravelEnd'
+
 
 import generateStore from '../generateStore'
 import en from 'react-intl/locale-data/en'
-import fr from 'react-intl/locale-data/fr'
 import localeData from '../../locales/data.json'
 
 import { initializeParse } from '../initParse'
@@ -65,16 +61,14 @@ function App({ location }){
               <CSSTransition key={location.key} timeout={{ enter: 300, exit: 0 }} classNames="fade">
                 <Section className="page-main-inner">
                   <Switch location={location}>
-                    
                     <Route exact path="/home" component={Home} />
                     <Route exact path="/home/infos" component={InfosPage} />
-                    <Route exact path="/home/transfert" component={TransfertPage} />
                     <Route exact path="/home/results" component={TravelResuls} />
-                    <Route exact path="/home/car" component={InfosPage} />
+                    <Route exact path="/home/car" component={TravelPageDriver} />
                     <Route exact path="/home/car/manage" component={CarManager} />
-                    {/* <Route exact path="/home/search/:location" component={StampHere} /> */}
                     <Route exact path="/home/travel" component={TravelPage} />
                     <Route exact path="/home/travel/manage" component={TravelManager} />
+                    <Route exact path="/home/travel/:travelId" component={TravelEnd} />
                     <Route exact path="/home/params" component={Settings} />
                     <Route exact path="/" component={Home} />
                   </Switch>

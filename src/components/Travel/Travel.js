@@ -7,18 +7,12 @@ import {
     SecondInputContainer,
     LoginInputsContainer,
   } from "../HomePage/styles";
-import Calendar from 'react-calendar';
-import 'react-calendar/dist/Calendar.css';
-import "./style/calendar.css"
-import { Title, IconContainer, Icon } from "../ForgotPassword/style"
 import { CommonContainerView } from '../common/commonContainer';
 import { Link } from 'react-router-dom'
 import closeIcon from "../../assets/icons/closeIcon.svg";
 import { FormattedMessage } from 'react-intl';
 import $ from 'jquery';
 import { connect } from 'react-redux'
-import {loadLoyaltyCard, fetchInitLoyaltyCard, loadCachedLoyaltyCard, loadLoyaltyFakeCard, changeQrMode, addStampByValidationLink,
-    closeValidationModal, addStampByMagicStamp } from '../../modules/home/actions'
     import {
         HomeContainer,
         ButtonContainer,
@@ -230,25 +224,11 @@ class Travel extends Component {
 
 const mapStateTopProps = (state) => {
     return {
-      isLoadingCard: state.home.isLoadingCard,
-      currentCard: state.home.currentCard,
       error: state.home.error,
-      card:state.home.card,
-      qrscanMode:state.home.qrscanMode,
-      isValidationSucceed:state.home.isValidationSucceed,
-      hasValue:state.home.hasValue
     }
   }
   
   const mapActionCreators = {
-    loadLoyaltyCard,
-    fetchInitLoyaltyCard,
-    loadCachedLoyaltyCard,
-    loadLoyaltyFakeCard, 
-    changeQrMode,
-    addStampByValidationLink,
-    closeValidationModal,
-    addStampByMagicStamp
   }
 
 export default connect(mapStateTopProps, mapActionCreators)(Travel)

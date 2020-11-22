@@ -1,27 +1,20 @@
 import React, { Component } from "react";
-import {
-  ContentContainer,
-  AnimatedImage,
-  ImageContainer,
-  TitleContainer,
-} from "./style";
 
 import {
   Input,
   ToggleButtonContainer,
-  Icon2,
+  IconForm,
   SecondInputContainer,
   LoginInputsContainer,
-  ButtonContainer
-} from "../HomePage/styles";
+  ButtonContainer,
+  Icon3,
+  IconContainer
+} from "../../components/common/styles";
+
 
 import BlueButtonLoading from "../../components/Buttons/BlueButtonLoading";
-
-
-import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import "./style/calendar.css";
-import { Title, IconContainer, Icon } from "../ForgotPassword/style";
 import { CommonContainerView } from "../common/commonContainer";
 import { Link } from "react-router-dom";
 import closeIcon from "../../assets/icons/closeIcon.svg";
@@ -29,19 +22,6 @@ import { FormattedMessage } from "react-intl";
 import $ from "jquery";
 import { connect } from "react-redux";
 import calendar from "../../assets/icons/calendar.svg";
-import {
-  loadLoyaltyCard,
-  fetchInitLoyaltyCard,
-  loadCachedLoyaltyCard,
-  loadLoyaltyFakeCard,
-  changeQrMode,
-  addStampByValidationLink,
-  closeValidationModal,
-  addStampByMagicStamp,
-} from "../../modules/home/actions";
-
-const _keyStr =
-  "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
 
 class CarManager extends Component {
   state = {
@@ -74,9 +54,9 @@ class CarManager extends Component {
   render() {
     return (
       <CommonContainerView>
-        <Link to="/home">
+        <Link to="/home/params">
           <IconContainer>
-            <Icon src={closeIcon} />
+            <Icon3 src={closeIcon} />
           </IconContainer>
         </Link>
         <LoginInputsContainer>
@@ -89,7 +69,7 @@ class CarManager extends Component {
               placeholder="Number plate"
             />
             <ToggleButtonContainer>
-              <Icon2 src={calendar} />
+              <IconForm src={calendar} />
             </ToggleButtonContainer>
           </SecondInputContainer>
           <SecondInputContainer>
@@ -101,7 +81,7 @@ class CarManager extends Component {
               placeholder="Car model"
             />
             <ToggleButtonContainer>
-              <Icon2 src={calendar} />
+              <IconForm src={calendar} />
             </ToggleButtonContainer>
           </SecondInputContainer>
           <ButtonContainer>
@@ -109,7 +89,7 @@ class CarManager extends Component {
               isLoading={this.state.loading}
               onClick={() => this.handleCreate()}
             >
-              <FormattedMessage id={"global.create"} />
+              <FormattedMessage id={"global.update"} />
             </BlueButtonLoading>
           </ButtonContainer>
         </LoginInputsContainer>
@@ -120,25 +100,13 @@ class CarManager extends Component {
 
 const mapStateTopProps = (state) => {
   return {
-    isLoadingCard: state.home.isLoadingCard,
-    currentCard: state.home.currentCard,
     error: state.home.error,
-    card: state.home.card,
-    qrscanMode: state.home.qrscanMode,
     isValidationSucceed: state.home.isValidationSucceed,
     hasValue: state.home.hasValue,
   };
 };
 
 const mapActionCreators = {
-  loadLoyaltyCard,
-  fetchInitLoyaltyCard,
-  loadCachedLoyaltyCard,
-  loadLoyaltyFakeCard,
-  changeQrMode,
-  addStampByValidationLink,
-  closeValidationModal,
-  addStampByMagicStamp,
 };
 
 export default connect(mapStateTopProps, mapActionCreators)(CarManager);

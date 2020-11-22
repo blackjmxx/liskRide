@@ -1,11 +1,8 @@
 import React from "react";
-import { PopupCalendarContainer, IconContainer, Icon, Text, ButtonContainer, PopupContentContainer, ImageSquare } from "../RegisterPopup/style"
-import { BlueButtonHref } from "../../pages/SettingsPage/LoginForm/LoginTab/style"
-import ShareButton from "../../components/ShareButton";
+import { PopupCalendarContainer, IconContainer, Icon, ButtonContainer, PopupContentContainer } from "../RegisterPopup/style"
 import { TitleContainer, Title } from "./style"
 import closeIcon from '../../assets/icons/closeIcon.svg'
 import { PopupViewContainer } from "../popup/style";
-import { FormattedMessage } from 'react-intl';
 import '../popup/index.scss';
 import './style/calendar.css'
 import Calendar from 'react-calendar';

@@ -1,42 +1,31 @@
 import React, { Component } from "react";
-import { Redirect, Link } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import AlgoliaPlaces from "algolia-places-react";
 import Notifications from "../Notifications";
 import Menubar from "../MenuBar/Menubar";
 import BlueButtonLoading from "../../components/Buttons/BlueButtonLoading";
-import pin from "../../assets/icons/pin.svg";
 import calendar from "../../assets/icons/calendar.svg";
 import seat from "../../assets/icons/seat.svg";
+import car from "../../assets/icons/car.svg";
 import Moment from "moment";
 import _ from "lodash";
 import CalendarModal from "../../components/CalendarModal/CalendarModal";
-import { connect } from "react-redux";
-
+import "./styles/custom.css"
 import {
   Input,
   ButtonContainer,
   SecondInputContainer,
   LoginInputsContainer,
-  ButtonContainer2,
   ToggleButtonContainer,
-  Icon2,
-} from "./styles";
+  IconForm,
+  SecondInputContainer2,
+  ImageContainer,
+  Image,
+} from "../../components/common/styles";
 
-// import IntroSlider from "react-intro-slider";
 import {
-  // Icon,
-  // ShortcutContainer,
-  // ShortcutContent,
   HomeContainer,
-  // BackgroundCircle,
-  // StampCardDetails,
-  // CardsContainer
-} from "./styles";
-import "./styles/index.scss";
-// import shortcutIcon from "../../assets/icons/shortcutIcon.svg";
-// import shortcutIconAndroid from "../../assets/icons/shortcutIconAndroid.svg";
-import { User } from "parse";
-// import { Theme } from "../Theme";
+} from "../../components/common/styles";
 import GlobalRequireAuth from "../../pages/SettingsPage/GlobalRequireAuth";
 import { FormattedMessage, injectIntl } from "react-intl";
 
@@ -51,22 +40,7 @@ class HomePage extends Component {
     showCalendarModal: false,
     isLoading:false
   };
-  constructor(props) {
-    super(props);
-
-    let currentUser = User.current();
-
-    if (currentUser) {
-      // loadUser and redirect
-    }
-  }
-
-  handleForm = () => {
-    const filteredByDestination = [];
-    const filteredBypickUpLocation = [];
-    const filteredBypickUpDate = [];
-    const filteredByAvailableSeatCount = [];
-    
+  handleForm = () => {    
     const {
       destination,
       pickUpLocation,
@@ -75,21 +49,17 @@ class HomePage extends Component {
     } = this.state;
 
     const travels = [];
-    // if(!departure || !pickUpLocation || !pickUpDate || !availableSeatCount){
-    //   return
-    // }
-    
+
     this.setState({isLoading:true})
     let destinationP = fetch(
-      `http://localhost:2020/extended-api/transactions?asset=destination&contains=${destination}`
+      `http://localhost:2020/extended-api/accounts?asset=destination&contains=${destination}`
     );
     let pickUpLocationP = fetch(
-      `http://localhost:2020/extended-api/transactions?asset=pickUpLocation&contains=${pickUpLocation}`
+      `http://localhost:2020/extended-api/accounts?asset=pickUpLocation&contains=${pickUpLocation}`
     );
     let pickUpDateP = fetch(
-      `http://localhost:2020/extended-api/transactions?asset=pickUpDate&contains=${pickUpDate}`
+      `http://localhost:2020/extended-api/accounts?asset=pickUpDate&contains=${pickUpDate}`
     );
-
 
     var search = {
       availableSeatCount,
@@ -98,7 +68,6 @@ class HomePage extends Component {
       destination
     };
 
-    debugger
     Promise.all([
       destinationP,
       pickUpLocationP,
@@ -112,6 +81,7 @@ class HomePage extends Component {
         Promise.all(promises).then((values) => {
           values.forEach((value) => {
             console.log(value);
+            
             value.data.forEach((v) => travels.push({travelId:v.id, carId:v.carId,...v.asset}));
           });
           
@@ -119,14 +89,14 @@ class HomePage extends Component {
 
           let results = travels.filter(function(item) {
             for (var key in filter) {
-              if (item[key] === undefined || item[key] != filter[key])
+              if (item[key] === undefined || item[key] !== filter[key])
                 return false;
             }
             return true;
           });
           this.setState({isLoading:false})
+          
           let uniquResult = _.uniqBy(results, 'travelId');
-          debugger
           this.props.updateTravels({travels:uniquResult, search})         
           this.props.history.push("/home/results");
         });
@@ -135,15 +105,6 @@ class HomePage extends Component {
         this.setState({isLoading:false})
         console.log(reason);
       });
-  };
-
-  handleChangeDeparture = ({
-    query,
-    rawAnswer,
-    suggestion,
-    suggestionIndex,
-  }) => {
-    //this.setState()
   };
 
   handleChange = (value) => {
@@ -178,30 +139,29 @@ class HomePage extends Component {
           ></CalendarModal>
           )}
             <Notifications />
+            <ImageContainer>
+                <Image src={car} />
+              </ImageContainer>
             <LoginInputsContainer>
-              <SecondInputContainer>
+
+              <SecondInputContainer2>
                 <AlgoliaPlaces
                   key="destinationId"
                   placeholder="Destination"
-                  name={"destination"}
+                  name={"destination"}                  
                   options={{
                     appId: "plEXDWG96G11",
                     apiKey: "45fcb12e9304daabbb2dfc2a4a12271a",
                     language: "fr",
                     countries: ["fr"],
-                    type: "city",
+                    type: "city"
                   }}
                   onChange={(data) =>
                     this.handleChange({ name: "destination", data: data })
                   }
-                  onError={({ message }) =>
-                    console.log(
-                      "Fired when we could not make the request to Algolia Places servers for any reason but reaching your rate limit."
-                    )
-                  }
                 />
-              </SecondInputContainer>
-              <SecondInputContainer>
+              </SecondInputContainer2>
+              <SecondInputContainer2>
                 <AlgoliaPlaces
                   key="pickUpLocationId"
                   placeholder="Pick up location"
@@ -211,36 +171,13 @@ class HomePage extends Component {
                     apiKey: "45fcb12e9304daabbb2dfc2a4a12271a",
                     language: "fr",
                     countries: ["fr"],
-                    type: "city",
+                    type: "city"
                   }}
                   onChange={(data) =>
                     this.handleChange({ name: "pickUpLocation", data: data })
                   }
-                  onCursorChanged={({
-                    rawAnswer,
-                    query,
-                    suggestion,
-                    suggestonIndex,
-                  }) =>
-                    console.log(
-                      "Fired when arrows keys are used to navigate suggestions."
-                    )
-                  }
-                  onClear={() =>
-                    console.log("Fired when the input is cleared.")
-                  }
-                  onLimit={({ message }) =>
-                    console.log(
-                      "Fired when you reached your current rate limit."
-                    )
-                  }
-                  onError={({ message }) =>
-                    console.log(
-                      "Fired when we could not make the request to Algolia Places servers for any reason but reaching your rate limit."
-                    )
-                  }
                 />
-              </SecondInputContainer>
+              </SecondInputContainer2>
               <SecondInputContainer>
                 <Input
                   as="button"
@@ -250,7 +187,7 @@ class HomePage extends Component {
                   placeholder="pick up date"
                 />
                 <ToggleButtonContainer>
-                  <Icon2 src={calendar} />
+                  <IconForm src={calendar} />
                 </ToggleButtonContainer>
               </SecondInputContainer>
               <SecondInputContainer>
@@ -260,10 +197,9 @@ class HomePage extends Component {
                   max={6}
                   onChange={this.handleChange}
                   value={this.state.availableSeatCount}
-                  placeholder="Price per seat"
                 />
                 <ToggleButtonContainer>
-                  <Icon2 src={calendar} />
+                  <IconForm src={seat} />
                 </ToggleButtonContainer>
               </SecondInputContainer>
 

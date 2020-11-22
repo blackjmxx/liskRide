@@ -1,11 +1,11 @@
 import React from 'react'
-import { getUser } from '../../../utils/storage';
+import { getUser2 } from '../../../utils/storage';
 
 import LoginForm from '../LoginForm'
 
 const RequireAuth = props => {
   
-  if (!getUser()) {
+  if (!getUser2()) {
     return <LoginForm {...props}/>
   }
   

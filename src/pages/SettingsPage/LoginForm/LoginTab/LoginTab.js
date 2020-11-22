@@ -6,8 +6,8 @@ import {
   FirstInputContainer,
   SecondInputContainer,
   Icon,
-  ToggleButtonContainer,
-} from "./style";
+  ToggleButtonContainer2,
+} from "../../../../components/common/styles";
 import eyeShowIcon from "../../../../assets/icons/eyeShowIcon.svg";
 import eyeHideIcon from "../../../../assets/icons/eyeHideIcon.svg";
 import { FormattedMessage } from "react-intl";
@@ -28,17 +28,17 @@ const LoginTab = (props) => {
             placeholder="Passphrase"
           />
           {showPassword ? (
-            <ToggleButtonContainer
+            <ToggleButtonContainer2
               onClick={() => setShowPassword(!showPassword)}
             >
               <Icon src={eyeShowIcon} />
-            </ToggleButtonContainer>
+            </ToggleButtonContainer2>
           ) : (
-            <ToggleButtonContainer
+            <ToggleButtonContainer2
               onClick={() => setShowPassword(!showPassword)}
             >
               <Icon src={eyeHideIcon} />
-            </ToggleButtonContainer>
+            </ToggleButtonContainer2>
           )}
         </SecondInputContainer>
         <FirstInputContainer>

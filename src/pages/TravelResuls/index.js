@@ -1,95 +1,39 @@
 import React, { Component } from "react";
-import { Redirect, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import Menubar from "../../components/MenuBar/Menubar";
-import BlueButtonLoading from "../../components/Buttons/BlueButtonLoading";
-import pin from "../../assets/icons/pin.svg";
-import calendar from "../../assets/icons/calendar.svg";
-import seat from "../../assets/icons/seat.svg";
 import { api } from "../../components/Api";
-import warningIcon from "../../assets/icons/warningIcon.svg";
-import personImg from "../../assets/images/person.svg";
 import closeIcon from "../../assets/icons/closeIcon.svg";
 import BookTravelTransaction from "../../transactions/book-travel";
+import { getUser2 } from "../../utils/storage";
+import { networkIdentifier , dateToLiskEpochTimestamp} from "../../utils";
+import BookModal from "../../components/BookModal/BookModal";
 
-import {
-  WarningInformationContainer2,
-  IconContainer,
-  WarningIcon,
-  WarningText,
-  WarningContentContainer,
-  PersonIcon,
-  WarningImageContainer,
-  Icon,
-  CommonContainerView,
-} from "../SettingsPage/LoginForm/style";
-import Moment from "react-moment";
-import * as cryptography from '@liskhq/lisk-cryptography';
+import { IconContainer, Icon } from "../SettingsPage/LoginForm/style";
 
-
-import {
-  Input,
-  ButtonContainer,
-  SecondInputContainer,
-  LoginInputsContainer,
-  ButtonContainer2,
-  ToggleButtonContainer,
-  Icon2,
-  HomeContainer,
-} from "./styles";
-
-// import IntroSlider from "react-intro-slider";
+import { LoginInputsContainer } from "../../components/common/styles";
 
 import {
   GiftItemContainer,
   GiftImageContainer,
-  GiftImage,
   GiftItemContentContainer,
   TimeoutContentContainer,
   ItemsContainer,
-  NotificationsViewContainer,
-} from "./styles2";
+} from "../../components/common/styles";
+
+import { NotificationsViewContainer } from "../../components/common/styles"
+
 import { Content, Title } from "../../components/NotificationItem/style";
 
 import "./styles/index.scss";
-// import shortcutIcon from "../../assets/icons/shortcutIcon.svg";
-// import shortcutIconAndroid from "../../assets/icons/shortcutIconAndroid.svg";
-import { User } from "parse";
-// import { Theme } from "../Theme";
-import GlobalRequireAuth from "../../pages/SettingsPage/GlobalRequireAuth";
-import { FormattedMessage, injectIntl } from "react-intl";
-
-
-const networkIdentifier = cryptography.getNetworkIdentifier(
-  "23ce0366ef0a14a91e5fd4b1591fc880ffbef9d988ff8bebf8f3666b0c09597d",
-  "Lisk",
-);
-
-const dateToLiskEpochTimestamp = date => (
-  Math.floor(new Date(date).getTime() / 1000) - Math.floor(new Date(Date.UTC(2016, 4, 24, 17, 0, 0, 0)).getTime() / 1000)
-);
-const GifItem = ({ name, description, imageUrl, expireAt, handleUseGift }) => (
-  <GiftItemContainer onClick={() => handleUseGift()}>
-    <GiftImageContainer>
-      <GiftImage src={imageUrl} />
-    </GiftImageContainer>
-    <GiftItemContentContainer>
-      <Title>{name}</Title>
-      <Content>{description}</Content>
-      <TimeoutContentContainer>
-        <Content>
-          Expire - {<Moment format="DD MM YYYY">{expireAt}</Moment>}
-        </Content>
-      </TimeoutContentContainer>
-    </GiftItemContentContainer>
-  </GiftItemContainer>
-);
-
 class TravelResuls extends Component {
   state = {
     startDate: new Date(),
     newTravel: undefined,
     mytravels: [],
+    selectedTravel: -1,
+    sealctedSeatCount:-1,
+    isBookingLoading:false
   };
 
   todayNotifications = [
@@ -107,63 +51,102 @@ class TravelResuls extends Component {
     },
   ];
 
-  componentDidMount() {}
+  handleOpenBookModal = (id, travelIndex) => {
+    this.setState({ selectedTravel: travelIndex });
+    this.setState({ showTravelModal: true });
+  };
 
-  handleSelect = (travelId, carId) => {
-    if(travelId){
-      let accounts = {} // retrieve accoun
-      let {user, search} = this.props // retrieve accoun
-      
+  handleBook = () => {
+    this.setState({isBookingLoading:true})
+    const { travels} = this.props;
+    const {selectedTravel , sealctedSeatCount} = this.state
+    
+    if (travels[selectedTravel] && sealctedSeatCount > 0) {
+
+      let travelId = travels[selectedTravel].travelId
+      let carId = travels[selectedTravel].carId
+
+      let user = JSON.parse(getUser2());
+
       const bookTravelTransaction = new BookTravelTransaction({
         asset: {
-          passengerId : user.address,
+          passengerId: user.address,
           travelId,
-          seatCount:search.availableSeatCount,
-          carId
+          seatCount: sealctedSeatCount,
+          carId,
         },
         networkIdentifier: networkIdentifier,
         timestamp: dateToLiskEpochTimestamp(new Date()),
       });
-  
+
       bookTravelTransaction.sign(user.passphrase);
       api.transactions
         .broadcast(bookTravelTransaction.toJSON())
-        .then((response) => {;
-          console.log("++++++++++++++++ API Response +++++++++++++++++");
-          console.log(response.data);
-          console.log("++++++++++++++++ Transaction Payload +++++++++++++++++");
-          console.log(bookTravelTransaction.stringify());
-          console.log("++++++++++++++++ End Script +++++++++++++++++");
+        .then((response) => {
+          this.setState({isBookingLoading:false})
+          this.setState({showTravelModal:false})
         })
         .catch((err) => {
-          console.log(JSON.stringify(err.errors, null, 2));
+          this.setState({isBookingLoading:false})
+          this.setState({showTravelModal:false})
         });
+    } else{
+      console.log('error')
     }
+  };
+
+  handleChangeSeatCount = (e, { value }) => {
+    this.setState({sealctedSeatCount:value})
   }
 
   render() {
+    const { travels } = this.props;
+    const {selectedTravel, isBookingLoading} = this.state
     return (
       <>
-        <CommonContainerView>
-            <Link to="/home">
-              <IconContainer>
-                <Icon src={closeIcon} />
-              </IconContainer>
-            </Link>
-            <LoginInputsContainer>
-            {this.props.travels.map((travel, i) => {
-              return (
-                <GifItem
-                  handleUseGift={() => this.handleSelect(travel.travelId, travel.carId)}
-                  name={travel.name}
-                  imageUrl={travel.imageUrl}
-                  pickupdate={travel.pickUpDate}
-                  pickupLocation={travel.pickupLocation}
-                />
-              );
-            })}
+        <NotificationsViewContainer>
+          {this.state.showTravelModal && (
+            <BookModal
+              closeModal={() => this.setState({ showTravelModal: false })}
+              travel={travels[selectedTravel]}
+              availableSeatCount={travels[selectedTravel].availableSeatCount}
+              handleAction={this.handleBook}
+              handleChangeSeatCount={this.handleChangeSeatCount}
+              isBookingLoading={isBookingLoading}
+            ></BookModal>
+          )}
+          <Link to="/home">
+            <IconContainer>
+              <Icon src={closeIcon} />
+            </IconContainer>
+          </Link>
+          <LoginInputsContainer>
+            <ItemsContainer>
+              {travels.map((travel, i) => (
+                <GiftItemContainer
+                  key={i}
+                  onClick={() =>
+                    this.handleOpenBookModal(travel.travelId, i)
+                  }
+                >
+                  <GiftImageContainer>
+                  </GiftImageContainer>
+                  <GiftItemContentContainer>
+                    <Title>
+                      {travel.destination} {"-->"} {travel.pickUpLocation}{" "}
+                    </Title>
+                    <Content>
+                      <b>Price:{travel.pricePerSeat} LSK</b>
+                    </Content>
+                    <TimeoutContentContainer>
+                      <Content>Start - {travel.pickUpDate}</Content>
+                    </TimeoutContentContainer>
+                  </GiftItemContentContainer>
+                </GiftItemContainer>
+              ))}
+            </ItemsContainer>
           </LoginInputsContainer>
-        </CommonContainerView>
+        </NotificationsViewContainer>
         <Menubar />
       </>
     );
@@ -172,13 +155,11 @@ class TravelResuls extends Component {
 
 const mapStateTopProps = (state) => {
   return {
-    user:state.settings.user,
+    user: state.settings.user,
     travels: state.home.travelsSearched
       ? state.home.travelsSearched.travels
       : [],
-    search:state.home.travelsSearched
-    ? state.home.travelsSearched.search
-    : {}
+    search: state.home.travelsSearched ? state.home.travelsSearched.search : {},
   };
 };
 
