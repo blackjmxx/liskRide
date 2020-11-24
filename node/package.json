@@ -14,8 +14,8 @@
   ],
   "license": "Apache-2.0",
   "dependencies": {
-    "@liskhq/lisk-client": "^4.0.0",
+    "@liskhq/lisk-transactions": "^3.0.2",
     "@moosty/lisk-extended-api": "0.0.8",
-    "lisk-sdk": "^3.0.1"
+    "lisk-sdk": "^3.0.2"
   }
 }
