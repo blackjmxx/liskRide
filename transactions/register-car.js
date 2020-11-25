@@ -64,55 +64,28 @@ class RegisterCarTransaction extends BaseTransaction {
 
     applyAsset(store) {
         const errors = [];
-        const car = store.account.get(this.asset.carId);
-        console.log(car)
-        if (car.asset.senderId) {
-          const updatedCarAccount = {
-            ...car,
-            ...{
-              asset: {
-                senderId: this.senderId,
-                driverAdress: this.asset.driverAdress,
-                numberPlate: this.asset.numberPlate,
-                carModel: this.asset.carModel,
-                type: "Car",
-              },
-            },
-          };
-          store.account.set(car.address, updatedCarAccount);
-        } else {
-          if (car.asset.senderId == this.asset.driverAdress) {
-            const updatedCarAccount = {
-              ...car,
-              ...{
-                asset: {
-                  driverAdress: this.asset.driverAdress,
-                  numberPlate: this.asset.numberPlate,
-                  carModel: this.asset.carModel,
-                  type: "Car",
-                },
-              },
-            };
-            store.account.set(car.address, updatedCarAccount);
-          } else {
-            errors.push(
-              new TransactionError(
-                "car has already been registered",
-                car.asset.name
-              )
-            );
+        const user = store.account.get(this.asset.carId);
+
+        const updatedUserAccount = {
+          ...user,
+            asset: {
+              senderId: this.senderId,
+              numberPlate: this.asset.numberPlate,
+              carModel: this.asset.carModel,
           }
-        }
+        };
+        
+        store.account.set(user.address, updatedUserAccount);
         return errors;
       }
 
     undoAsset(store) {
         const errors = [];
 
-        /* --- Revert car account --- */
-        const car = store.account.get(this.asset.carId);
-        const originalCarAccount = { ...car, asset: null };
-        store.account.set(car.address, originalCarAccount);
+        /* --- Revert user car info --- */
+        const user = store.account.get(this.asset.carId);
+        const originalUserAccount = { ...user, asset: {...this.user.asset, numberPlate:null, carModel:null} };
+        store.account.set(user.address, originalUserAccount);
         
         return errors;
     }

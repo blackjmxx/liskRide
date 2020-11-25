@@ -96,16 +96,7 @@ class RegisterTravelransaction extends BaseTransaction {
     const errors = [];
 
     const travel = store.account.get(this.asset.carId);
-    const items = travel.asset.items || []
 
-    items.push({
-      driverAdress: this.asset.driverAdress,
-      pickUpLocation: this.asset.pickUpLocation,
-      pickUpDate:this.asset.pickUpDate,
-      availableSeatCount: this.asset.availableSeatCount,
-      pricePerSeat:this.asset.pricePerSeat
-    })
-    console.log(items)
     const updatedTravelAccount = {
       ...travel,
         asset: {
@@ -114,12 +105,9 @@ class RegisterTravelransaction extends BaseTransaction {
           pickUpLocation: this.asset.pickUpLocation,
           pickUpDate:this.asset.pickUpDate,
           availableSeatCount: this.asset.availableSeatCount,
-          pricePerSeat:this.asset.pricePerSeat,
-          items: items
+          pricePerSeat:this.asset.pricePerSeat
         }
     };
-    console.log(updatedTravelAccount)
-
     store.account.set(travel.address, updatedTravelAccount);
   
   return errors;

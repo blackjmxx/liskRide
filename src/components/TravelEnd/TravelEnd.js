@@ -17,7 +17,7 @@ import "react-calendar/dist/Calendar.css";
 import "./style/calendar.css";
 import { Link } from "react-router-dom";
 import closeIcon from "../../assets/icons/closeIcon.svg";
-import $ from "jquery";
+
 import { connect } from "react-redux";
 
 const date = new Date();
@@ -54,28 +54,11 @@ class TravelEnd extends Component {
 
   }
 
-  complete = () => {
-    this.setState({ stampTouching: false });
-  };
-
-  displayCustomMessage = (helpMsg) => {
-    $("#snowshoe-messages").children().replaceWith(helpMsg);
-  };
-
-  handleStampSuccess = (result) => {
-    console.log("success");
-  };
-
-  handleStampError = (error) => {
-    console.log(" :-( ");
-  };
-
   handleRate = (e, { rating, maxRating }, passengerAddress) => { 
     this.setState({ratings:{...this.state.ratings , [passengerAddress]:rating}})
   }
 
   rateAndWidthDraw = (fromPassengerAdress, rating) => {
-    // retrieve accoun
     let user = JSON.parse(getUser2());
     const { travelId } = this.props.match.params;
     const { ratings, travel } = this.state;

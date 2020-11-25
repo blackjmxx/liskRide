@@ -32,22 +32,6 @@ class Travel extends Component {
     componentDidMount() {
     }
 
-    complete = () => {
-        this.setState({ stampTouching: false });
-    }
-
-    displayCustomMessage = (helpMsg) => {
-        $("#snowshoe-messages").children().replaceWith(helpMsg);
-    };
-
-    handleStampSuccess = (result) => {
-        console.log('success')
-    }
-
-    handleStampError = (error) => {
-        console.log(" :-( ");
-    }
-
     handleChange = (data) => {
         
     }

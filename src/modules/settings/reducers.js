@@ -3,7 +3,7 @@ import {
   FETCH_USERPROFILE_FAILURE,
   FETCH_USERPROFILE_SUCCESS,
   FETCH_USERPROFILE_REQUEST,
-  RECEIVE_USER_BALANCE
+  RECEIVE_USER_DATA
 } from './actions'
 
 const initState = {
@@ -26,14 +26,15 @@ export default function settingsReducer (state = initState, action) {
           user:action.user,
           isLoadingUser: false
         }
-      case RECEIVE_USER_BALANCE:
-        
+      case RECEIVE_USER_DATA:
           return {
             ...state,
             error: false,
             user:{
               ...state.user,
-              balance:action.balance
+              balance:action.data.balance,
+              numberPlate:action.data.numberPlate,
+              carModel:action.data.carModel
             },
           }
     case FETCH_USERPROFILE_FAILURE:{

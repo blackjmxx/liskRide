@@ -1,10 +1,7 @@
 import React, { Component } from "react";
 import Menubar from "../../components/MenuBar/Menubar";
 import { api } from "../../components/Api";
-import FinishTavelTransaction from "../../transactions/finnish-travel";
-import TravelModal from "../../components/TravelModal/TravelModal";
 import BlueButtonLoading from "../../components/Buttons/BlueButtonLoading";
-import { networkIdentifier , dateToLiskEpochTimestamp} from "../../utils";
 import GlobalRequireAuth from "../../pages/SettingsPage/GlobalRequireAuth";
 import {
   InformationContainer,
@@ -35,21 +32,6 @@ class TravelPageDriver extends Component {
     mytravels: [],
   };
 
-  todayNotifications = [
-    {
-      title: `You've won a free donut`,
-      content: "Locals Coffee",
-    },
-    {
-      title: `You've won a free donut`,
-      content: "Locals Coffee",
-    },
-    {
-      title: `You've won a free donut`,
-      content: "Locals Coffee",
-    },
-  ];
-
   componentDidMount() {
     let user = JSON.parse(getUser2());
     if(user){
@@ -71,49 +53,15 @@ class TravelPageDriver extends Component {
     this.props.history.push("/home/travel/"+id);
   }
 
-  handleTravel = (id) => {
-    let user = JSON.parse(getUser2());
-    const { mytravels, selectedTravel } = this.state;
-    const finishTavelTransaction = new FinishTavelTransaction({
-      asset: {
-        passengerId : user.address,
-        travelId:mytravels[selectedTravel].asset.travelId,
-      },
-      networkIdentifier: networkIdentifier,
-      timestamp: dateToLiskEpochTimestamp(new Date()),
-    });
-
-    finishTavelTransaction.sign(user.passphrase);
-    api.transactions
-      .broadcast(finishTavelTransaction.toJSON())
-      .then((response) => {;
-        console.log("++++++++++++++++ API Response +++++++++++++++++");
-        console.log(response.data);
-        console.log("++++++++++++++++ Transaction Payload +++++++++++++++++");
-        console.log(finishTavelTransaction.stringify());
-        console.log("++++++++++++++++ End Script +++++++++++++++++");
-      })
-      .catch((err) => {
-        console.log(JSON.stringify(err.errors, null, 2));
-      });
-  }
-
   goTo = () => {
     this.props.history.push('/home/travel/manage')
   }
 
   render() {
-    const { mytravels, selectedTravel } = this.state;
+    const { mytravels } = this.state;
     return (
       <GlobalRequireAuth {...this.props}>
         <NotificationsViewContainer>
-        {this.state.showTravelModal && (
-          <TravelModal
-            closeModal={() => this.setState({ showTravelModal: false })}
-            travel={mytravels[selectedTravel]}
-            handleAction={this.handleTravelAction}
-          ></TravelModal>
-          )}
           <ItemsContainer>
               <InformationContainer>
               <BlueButtonLoading

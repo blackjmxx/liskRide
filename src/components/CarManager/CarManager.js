@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { getUser2 } from "../../utils/storage";
 
 import {
   Input,
@@ -10,8 +11,9 @@ import {
   Icon3,
   IconContainer
 } from "../../components/common/styles";
-
-
+import { networkIdentifier , dateToLiskEpochTimestamp} from "../../utils";
+import RegisterCarTransaction from "../../transactions/register-car";
+import { api } from '../../components/Api';
 import BlueButtonLoading from "../../components/Buttons/BlueButtonLoading";
 import "react-calendar/dist/Calendar.css";
 import "./style/calendar.css";
@@ -19,34 +21,47 @@ import { CommonContainerView } from "../common/commonContainer";
 import { Link } from "react-router-dom";
 import closeIcon from "../../assets/icons/closeIcon.svg";
 import { FormattedMessage } from "react-intl";
-import $ from "jquery";
+
 import { connect } from "react-redux";
 import calendar from "../../assets/icons/calendar.svg";
 
 class CarManager extends Component {
   state = {
-    stampTouching: false,
     value: new Date(),
   };
   componentDidMount() {}
 
-  complete = () => {
-    this.setState({ stampTouching: false });
-  };
+  handleChange = (e) => {
+    this.setState({
+      [e.target.name]: e.target.value,
+    });
+  }
 
-  displayCustomMessage = (helpMsg) => {
-    $("#snowshoe-messages").children().replaceWith(helpMsg);
-  };
+  handleCreate = () => {
+    const {numberPlate,carModel} = this.state;
+    let user = JSON.parse(getUser2());
+    const registerCarTransaction = new RegisterCarTransaction({
+      asset: {
+        carId : user.address,
+        numberPlate,
+        carModel
+      },
+      networkIdentifier: networkIdentifier,
+      timestamp: dateToLiskEpochTimestamp(new Date()),
+    });
 
-  handleStampSuccess = (result) => {
-    console.log("success");
-  };
+    registerCarTransaction.sign(user.passphrase);
 
-  handleStampError = (error) => {
-    console.log(" :-( ");
-  };
+    api.transactions
+      .broadcast(registerCarTransaction.toJSON())
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((err) => {
+        console.log(JSON.stringify(err.errors, null, 2));
+      });
+  }
 
-  handleChange = (data) => {};
   render() {
     return (
       <CommonContainerView>

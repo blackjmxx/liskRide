@@ -28,7 +28,7 @@ import { CommonContainerView } from "../common/commonContainer";
 import { Link } from "react-router-dom";
 import closeIcon from "../../assets/icons/closeIcon.svg";
 import { FormattedMessage } from "react-intl";
-import $ from "jquery";
+
 import { connect } from "react-redux";
 import calendar from "../../assets/icons/calendar.svg";
 
@@ -48,22 +48,6 @@ class TravelManager extends Component {
   };
 
   componentDidMount() {}
-
-  complete = () => {
-    this.setState({ stampTouching: false });
-  };
-
-  displayCustomMessage = (helpMsg) => {
-    $("#snowshoe-messages").children().replaceWith(helpMsg);
-  };
-
-  handleStampSuccess = (result) => {
-    console.log("success");
-  };
-
-  handleStampError = (error) => {
-    console.log(" :-( ");
-  };
 
   handleChange = (value) => {
     if (value.name === "destination" || value.name === "pickUpLocation") {

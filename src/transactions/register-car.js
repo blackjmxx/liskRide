@@ -65,7 +65,6 @@ class RegisterCarTransaction extends BaseTransaction {
     applyAsset(store) {
         const errors = [];
         const car = store.account.get(this.asset.carId);
-        console.log(car)
         if (car.asset.senderId) {
           const updatedCarAccount = {
             ...car,
@@ -81,7 +80,7 @@ class RegisterCarTransaction extends BaseTransaction {
           };
           store.account.set(car.address, updatedCarAccount);
         } else {
-          if (car.asset.senderId == this.asset.driverAdress) {
+          if (car.asset.senderId === this.asset.driverAdress) {
             const updatedCarAccount = {
               ...car,
               ...{

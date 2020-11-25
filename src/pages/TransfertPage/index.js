@@ -32,7 +32,6 @@ class TransfertPage extends Component {
   }
 
   componentDidMount = () => {
-    //get all travel
   };
 
   handleChange = (event) => {
