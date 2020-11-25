@@ -35,7 +35,17 @@ class StartTravelransaction extends BaseTransaction {
           'Invalid "asset.travelId" defined on transaction',
           this.id,
           ".asset.travelId",
-          this.asset.carId
+          this.asset.travelId
+        )
+      );
+    }
+    if (!this.asset.passengerId || typeof this.asset.passengerId !== "string") {
+      errors.push(
+        new TransactionError(
+          'Invalid "asset.passengerId" defined on transaction',
+          this.id,
+          ".asset.passengerId",
+          this.asset.passengerId
         )
       );
     }
@@ -75,7 +85,7 @@ class StartTravelransaction extends BaseTransaction {
         }
     };
 
-  if(errors.length > 0){
+  if(errors.length === 0){
     store.account.set(travel.address, updatedTravelAccount);
   }
 

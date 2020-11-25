@@ -80,7 +80,7 @@ class TravelEnd extends Component {
     const { travelId } = this.props.match.params;
     const { ratings, travel } = this.state;
     
-    const EndTravelTransaction = new EndTravelTransaction({
+    const endTravelTransaction = new EndTravelTransaction({
       asset: {
         travelId:travelId,
         passengerId:fromPassengerAdress,
@@ -91,9 +91,9 @@ class TravelEnd extends Component {
       timestamp: dateToLiskEpochTimestamp(new Date()),
     });
 
-    EndTravelTransaction.sign(user.passphrase);
+    endTravelTransaction.sign(user.passphrase);
     api.transactions
-      .broadcast(EndTravelTransaction.toJSON())
+      .broadcast(endTravelTransaction.toJSON())
       .then((response) => {;
         console.log(response.data);
       })

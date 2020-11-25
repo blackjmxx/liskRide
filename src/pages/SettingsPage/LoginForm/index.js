@@ -6,9 +6,8 @@ import RegisterTab from "./RegisterTab/RegisterTab";
 
 import "./styles.css";
 import { LoginRegisterHeader } from "../../../components/LoginRegisterHeader/LoginRegisterHeader";
-import {LoginViewContainer, TitleContainer, TitleBottomContent, ButtonContainer, BottomLoginContainer, ErrorInformationContent, ErrorContainer, LoginContainer, IconContainer, WarningIcon, WarningImageContainer, WarningText, WarningContentContainer, PersonIcon } from "./style";
+import {LoginViewContainer, BottomLoginContainer, ErrorInformationContent, ErrorContainer, LoginContainer, IconContainer, WarningIcon, WarningImageContainer, WarningText, WarningContentContainer, PersonIcon } from "./style";
 import MenuBar from '../../../components/MenuBar/Menubar';
-// import { RegisterPopup } from "../../../components/RegisterPopup/RegisterPopup";
 import warningIcon from '../../../assets/icons/warningIcon.svg';
 import personImg from '../../../assets/images/person.svg';
 import { FormattedMessage } from 'react-intl';
