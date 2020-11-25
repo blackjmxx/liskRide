@@ -123,7 +123,7 @@ class BookTravelransaction extends BaseTransaction {
       );
     }
     if (
-      passenger.address == driver.address
+      passenger.address === driver.address
     ) {
       errors.push(
         new TransactionError(
@@ -208,7 +208,7 @@ class BookTravelransaction extends BaseTransaction {
 
 
     /* --- Revert passenger account --- */
-    const driver = store.account.get(driver.asset.carId);
+    const driver = store.account.get(this.asset.carId);
     const originalDriverAccount = { ...driver, asset: null };
     store.account.set(travel.address, originalDriverAccount);
 
