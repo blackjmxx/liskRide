@@ -74,7 +74,7 @@ export const PersonIcon = styled(SemanticImage)`
     width: 90%;
     height: 90%;
 `
-export const WarningInformationContainer = styled.div`
+export const LoginContainer = styled.div`
     display: flex;
     flex-direction: row;
     width: 87%;
@@ -87,7 +87,7 @@ export const WarningInformationContainer = styled.div`
     border-radius: 8px;
 `
 
-export const WarningInformationContainer2 = styled.div`
+export const TravelContainer = styled.div`
     display: flex;
     flex-direction: row;
     width: 100%;
@@ -101,7 +101,7 @@ export const WarningInformationContainer2 = styled.div`
     padding: 2%;
 `
 
-export const WarningInformationContainer4 = styled.div`
+export const InformationContainer = styled.div`
     display: flex;
     flex-direction: row;
     width: 100%;
@@ -112,7 +112,7 @@ export const WarningInformationContainer4 = styled.div`
     padding: 2%;
 `
 
-export const WarningInformationContainer3 = styled.div`
+export const AuthContainer = styled.div`
     display: flex;
     flex-direction: row;
     width: 80%;

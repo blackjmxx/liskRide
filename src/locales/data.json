@@ -19,6 +19,7 @@
     "paramsPage.numberPlate":"Number plate",
     "paramsPage.carModel":"Car model",
     "paramsPage.with":"with",
+    "paramsPage.faucet":"Get 200 faucet",
     "paramsPage.agreementText":" I agree to the Terms and Policies",
     "paramsPage.createAccount":"Create Account",
     "passRecoveryPage.enterEmai": "Enter you email",
@@ -35,19 +36,15 @@
     "global.create":"Create",
     "global.register":"register",
     "global.forgotPassword":"Forgot Password?",
-    "global.modalScanErrorMessage": "Erm...Something went wrong 👎",
-    "global.modalScanErrorTitle": "Error",
-    "global.modalScanSuccessTitle": "Success",
-    "global.modalScanSuccesMessage": "Your point has been saved 👍",
     "global.validationSuccessWithGiftMessage":"Your new gift is unlocked",
     "global.finalSuccessPopUpMessage":"You just unlocked all your gifts :)",
     "global.notVerified":"A confirmation email has just been sent to you to activate your account. (identify spam folder)",
     "menu.search":"Search",
     "menu.gifts":"Gifts",    
     "menu.account":"Account",
-    "menu.scan":"Scan",
     "menu.notif":"Notifications",
     "menu.travels":"Passenger",
-    "menu.car":"Driver"
+    "menu.car":"Driver",
+    "menu.transfert":"Transfert"
   }
 }

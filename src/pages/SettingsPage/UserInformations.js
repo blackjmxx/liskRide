@@ -4,7 +4,7 @@ import BlueButtonLoading from "../../components/Buttons/BlueButtonLoading";
 import { LogoutPopup } from "../../components/LogoutPopup/LogoutPopup";
 import { BlueButton } from "../../components/common/styles";
 import {
-  WarningInformationContainer4,
+  InformationContainer,
   IconContainer,
   ItemsContainer
 } from "../SettingsPage/LoginForm/style";
@@ -103,14 +103,14 @@ const UserInformations = (props) => {
       </TopInformationContainer>
       <UserInfoContainer>
       <ItemsContainer>
-      <WarningInformationContainer4>
+      <InformationContainer>
               <BlueButtonLoading
                   color={'#F1C310'}
                   onClick={() => props.history.push('/home/car/manage')}
                 >
                   <FormattedMessage id={"paramsPage.manageCar"} />
             </BlueButtonLoading>
-        </WarningInformationContainer4>
+        </InformationContainer>
       </ItemsContainer>
       </UserInfoContainer>
       <InfomationsContainer>

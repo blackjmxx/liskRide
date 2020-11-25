@@ -9,7 +9,7 @@ import GlobalRequireAuth from "../../pages/SettingsPage/GlobalRequireAuth";
 import Avatar from 'react-avatar';
 
 import {
-  WarningInformationContainer2,
+  TravelContainer,
   WarningText,
   WarningContentContainer,
   PersonIcon,
@@ -75,12 +75,6 @@ class TravelPage extends Component {
       });
   }
 
-  addTravel = () => {
-    if (this.setState.newTravel) {
-      // add travel
-    }
-  };
-
   handleOpenTravelModal = (id, travelIndex) => {
     this.setState({selectedTravel:travelIndex})
     this.setState({showTravelModal:true})
@@ -127,7 +121,7 @@ class TravelPage extends Component {
           ></TravelModal>
           )}
           <ItemsContainer>
-              <WarningInformationContainer2>
+              <TravelContainer>
                 <WarningContentContainer>
                   <WarningText>
                     <FormattedMessage id={"paramsPage.titleTravel"} />
@@ -136,7 +130,7 @@ class TravelPage extends Component {
                 <WarningImageContainer>
                   <PersonIcon src={personImg} />
                 </WarningImageContainer>
-              </WarningInformationContainer2>
+              </TravelContainer>
             {mytravels.map((travel, i) => (
               <GiftItemContainer key={i}
                onClick={() => this.handleOpenTravelModal(travel.asset.travelId, i)}

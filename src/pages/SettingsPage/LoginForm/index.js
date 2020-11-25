@@ -6,7 +6,7 @@ import RegisterTab from "./RegisterTab/RegisterTab";
 
 import "./styles.css";
 import { LoginRegisterHeader } from "../../../components/LoginRegisterHeader/LoginRegisterHeader";
-import {LoginViewContainer, TitleContainer, TitleBottomContent, ButtonContainer, BottomLoginContainer, ErrorInformationContent, ErrorContainer, WarningInformationContainer, IconContainer, WarningIcon, WarningImageContainer, WarningText, WarningContentContainer, PersonIcon } from "./style";
+import {LoginViewContainer, TitleContainer, TitleBottomContent, ButtonContainer, BottomLoginContainer, ErrorInformationContent, ErrorContainer, LoginContainer, IconContainer, WarningIcon, WarningImageContainer, WarningText, WarningContentContainer, PersonIcon } from "./style";
 import MenuBar from '../../../components/MenuBar/Menubar';
 // import { RegisterPopup } from "../../../components/RegisterPopup/RegisterPopup";
 import warningIcon from '../../../assets/icons/warningIcon.svg';
@@ -39,8 +39,7 @@ class LoginForm extends Component {
       return this.props.displayError({ message: "Password not match" });
     }
 
-    const { objectId } = this.props.card;
-    this.props.registerUser(email, password, objectId, this.props.history);
+    this.props.registerUser(email, password, null, this.props.history);
   };
   
   handleChange = e => {
@@ -85,7 +84,7 @@ class LoginForm extends Component {
       <LoginViewContainer>
       { this.isLoginTabActive()
       ?
-      <WarningInformationContainer>
+      <LoginContainer>
         <IconContainer>
           <WarningIcon src={warningIcon} />
         </IconContainer>
@@ -95,7 +94,7 @@ class LoginForm extends Component {
         <WarningImageContainer>
           <PersonIcon src={personImg}/>
         </WarningImageContainer>
-      </WarningInformationContainer>
+      </LoginContainer>
       :
       null}
       <ErrorContainer>

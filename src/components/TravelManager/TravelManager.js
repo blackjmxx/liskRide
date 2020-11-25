@@ -46,9 +46,6 @@ class TravelManager extends Component {
     loading:false,
     error:{}
   };
-  closeScannerPage = () => {
-    this.props.history.push("/home/travel");
-  };
 
   componentDidMount() {}
 

@@ -9,9 +9,11 @@ import {Link, withRouter} from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
 
 import {SvgIcon} from '../SvgIcon/SvgIcon';
-import {cardIcon} from '../../assets/icons/cardIcon';
-import {loginIcon} from '../../assets/icons/loginIcon';
-import {notificationIcon} from '../../assets/icons/notificationIcon';
+import {loupeIcon} from '../../assets/icons/loupeIcon';
+import {transfertIcon} from '../../assets/icons/transfertIcon';
+import {passengerIcon} from '../../assets/icons/passengerIcon';
+import {driverIcon} from '../../assets/icons/driverIcon';
+import {loginIcon} from '../../assets/icons/loginIcon'
 
 import {ActiveTitle, menuBarStyle, MenuLinkStyles, Title} from './styles';
 
@@ -31,19 +33,25 @@ class TabBarRow extends Component {
               path: '/home',
               name: 'home',
               label: <FormattedMessage id={"menu.search"} />,
-              icon: cardIcon
+              icon: loupeIcon
           },
           {
               path: '/home/travel',
               name: 'travel',
               label: <FormattedMessage id={"menu.travels"} />,
-              icon: notificationIcon
+              icon: passengerIcon
+          },
+          {
+            path: '/home/transfert',
+            name: 'transfert',
+            label: <FormattedMessage id={"menu.transfert"} />,
+            icon: transfertIcon
           },
           {
             path: '/home/car',
             name: 'car',
             label: <FormattedMessage id={"menu.car"} />,
-            icon: notificationIcon
+            icon: driverIcon
           },
           {
               path: '/home/params',
@@ -78,10 +86,6 @@ class TabBarRow extends Component {
     );
   }
 };
-
-// const mapActionCreators = {
-//     addBadgeToMenu
-//   }
 
 const mapStateTopProps = (state) => {
     return {

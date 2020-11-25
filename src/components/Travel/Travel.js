@@ -29,10 +29,6 @@ class Travel extends Component {
         stampTouching:false,
         value:new Date()
     }
-    closeScannerPage = () => {
-        this.props.history.push("/home");
-      };
-
     componentDidMount() {
     }
 

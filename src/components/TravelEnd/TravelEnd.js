@@ -36,10 +36,7 @@ class TravelEnd extends Component {
     travel:{travelDriverBalance:[]},
     ratings:{}
   };
-  closeScannerPage = () => {
-    this.props.history.push("/home/car");
-  };
-
+  
   componentDidMount() {
     const { travelId } = this.props.match.params;
     if(!travelId) return

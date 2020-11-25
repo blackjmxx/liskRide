@@ -28,10 +28,6 @@ class CarManager extends Component {
     stampTouching: false,
     value: new Date(),
   };
-  closeScannerPage = () => {
-    this.props.history.push("/home/travel");
-  };
-
   componentDidMount() {}
 
   complete = () => {

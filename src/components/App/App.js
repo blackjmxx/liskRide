@@ -9,6 +9,7 @@ import InfosPage from '../../pages/InfosPage'
 import TravelResuls from '../../pages/TravelResuls'
 import TravelPage from '../../pages/TravelPage'
 import TravelPageDriver from '../../pages/TravelPageDriver'
+import TransfertPage from '../../pages/TransfertPage'
 
 import { addLocaleData } from 'react-intl'
 import { Provider } from 'react-redux'
@@ -63,6 +64,7 @@ function App({ location }){
                   <Switch location={location}>
                     <Route exact path="/home" component={Home} />
                     <Route exact path="/home/infos" component={InfosPage} />
+                    <Route exact path="/home/transfert" component={TransfertPage} />
                     <Route exact path="/home/results" component={TravelResuls} />
                     <Route exact path="/home/car" component={TravelPageDriver} />
                     <Route exact path="/home/car/manage" component={CarManager} />

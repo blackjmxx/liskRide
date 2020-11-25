@@ -7,7 +7,7 @@ import BlueButtonLoading from "../../components/Buttons/BlueButtonLoading";
 import { networkIdentifier , dateToLiskEpochTimestamp} from "../../utils";
 import GlobalRequireAuth from "../../pages/SettingsPage/GlobalRequireAuth";
 import {
-  WarningInformationContainer4,
+  InformationContainer,
 } from "../SettingsPage/LoginForm/style";
 import { getUser2 } from "../../utils/storage";
 import { connect } from "react-redux";
@@ -71,12 +71,6 @@ class TravelPageDriver extends Component {
     this.props.history.push("/home/travel/"+id);
   }
 
-  addTravel = () => {
-    if (this.setState.newTravel) {
-      // add travel
-    }
-  };
-
   handleTravel = (id) => {
     let user = JSON.parse(getUser2());
     const { mytravels, selectedTravel } = this.state;
@@ -121,14 +115,14 @@ class TravelPageDriver extends Component {
           ></TravelModal>
           )}
           <ItemsContainer>
-              <WarningInformationContainer4>
+              <InformationContainer>
               <BlueButtonLoading
                   color={'#F1C310'}
                   onClick={() => this.goTo()}
                 >
                   <FormattedMessage id={"paramsPage.manageTravel"} />
                 </BlueButtonLoading>
-              </WarningInformationContainer4>
+              </InformationContainer>
             {mytravels.map((travel, i) => (
               <GiftItemContainer key={i}
               onClick={() => {this.handleOpenTravelModal(travel.travelId, i)}}

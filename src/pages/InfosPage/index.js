@@ -5,7 +5,7 @@ import Menubar from "../../components/MenuBar/Menubar";
 import warningIcon from "../../assets/icons/warningIcon.svg";
 import personImg from "../../assets/images/person.svg";
 import {
-  WarningInformationContainer3,
+  AuthContainer,
   IconContainer,
   WarningIcon,
   WarningText,
@@ -72,12 +72,6 @@ class InfosPage extends Component {
     //get all travel
   };
 
-  addTravel = () => {
-    if (this.setState.newTravel) {
-      // add travel
-    }
-  };
-
   render() {
     const mytravels = [{}, {}, {}, {}, {}, {}];
     return (
@@ -90,7 +84,7 @@ class InfosPage extends Component {
                 width: "100%",
               }} to={"/home/car"}>
               {" "}
-              <WarningInformationContainer3>
+              <AuthContainer>
                 <IconContainer>
                   <WarningIcon src={warningIcon} />
                 </IconContainer>
@@ -102,7 +96,7 @@ class InfosPage extends Component {
                 <WarningImageContainer>
                   <PersonIcon src={personImg} />
                 </WarningImageContainer>
-              </WarningInformationContainer3>
+              </AuthContainer>
             </Link>
             {mytravels.map((travel, i) => {
               return (
