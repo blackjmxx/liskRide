@@ -5,7 +5,7 @@ import Menubar from "../../components/MenuBar/Menubar";
 import { api } from "../../components/Api";
 import closeIcon from "../../assets/icons/closeIcon.svg";
 import BookTravelTransaction from "../../transactions/book-travel";
-import { getUser2 } from "../../utils/storage";
+import { getUser } from "../../utils/storage";
 import { networkIdentifier , dateToLiskEpochTimestamp} from "../../utils";
 import BookModal from "../../components/BookModal/BookModal";
 
@@ -66,7 +66,7 @@ class TravelResuls extends Component {
       let travelId = travels[selectedTravel].travelId
       let carId = travels[selectedTravel].carId
 
-      let user = JSON.parse(getUser2());
+      let user = JSON.parse(getUser());
 
       const bookTravelTransaction = new BookTravelTransaction({
         asset: {

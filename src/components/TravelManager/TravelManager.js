@@ -4,7 +4,7 @@ import CalendarModal from "../../components/CalendarModal/CalendarModal";
 import Moment from "moment";
 import { Mnemonic } from '@liskhq/lisk-passphrase';
 import { getAddressAndPublicKeyFromPassphrase } from '@liskhq/lisk-cryptography';
-import { getUser2 } from "../../utils/storage";
+import { getUser } from "../../utils/storage";
 import { networkIdentifier , dateToLiskEpochTimestamp} from "../../utils";
 
 import {
@@ -67,7 +67,7 @@ class TravelManager extends Component {
 
     let registerpassphrase = Mnemonic.generateMnemonic();
     const { address } = getAddressAndPublicKeyFromPassphrase(registerpassphrase);
-    let user = JSON.parse(getUser2());
+    let user = JSON.parse(getUser());
     const registerTravelTransaction = new RegisterTravelTransaction({
       asset: {
         carId : user.address,

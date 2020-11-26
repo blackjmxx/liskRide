@@ -6,7 +6,7 @@ import {TransferTransaction, utils} from '@liskhq/lisk-transactions';
 import { api } from '../../components/Api';
 import { FormattedMessage } from "react-intl";
 import { connect } from "react-redux";
-import { getUser2 } from "../../utils/storage";
+import { getUser } from "../../utils/storage";
 import {
   InformationContainer,
 } from "../SettingsPage/LoginForm/style";
@@ -42,7 +42,7 @@ class TransfertPage extends Component {
 
   handleSubmit = (event) => {
     this.setState({isLoading:true})
-    let user = JSON.parse(getUser2());
+    let user = JSON.parse(getUser());
 
     try {
         const fundTransaction = new TransferTransaction({

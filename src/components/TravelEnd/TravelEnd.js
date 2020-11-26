@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import CalendarModal from "../../components/CalendarModal/CalendarModal";
-import { getUser2 } from "../../utils/storage";
+import { getUser } from "../../utils/storage";
 import { Rating, Button } from 'semantic-ui-react'
 import EndTravelTransaction from "../../transactions/end-travel";
 import { networkIdentifier , dateToLiskEpochTimestamp} from "../../utils";
@@ -59,7 +59,7 @@ class TravelEnd extends Component {
   }
 
   rateAndWidthDraw = (fromPassengerAdress, rating) => {
-    let user = JSON.parse(getUser2());
+    let user = JSON.parse(getUser());
     const { travelId } = this.props.match.params;
     const { ratings, travel } = this.state;
     

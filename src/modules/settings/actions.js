@@ -1,8 +1,7 @@
-import { setUser, setUser2 } from "../../utils/storage";
+import { setUser } from "../../utils/storage";
 import { getAddressAndPublicKeyFromPassphrase } from '@liskhq/lisk-cryptography';
 import { api } from '../../components/Api';
 
-// Constants
 export const FETCH_USERPROFILE_REQUEST = "FETCH_USERPROFILE_REQUEST";
 export const FETCH_USERPROFILE_SUCCESS = "FETCH_USERPROFILE_SUCCESS";
 export const FETCH_USERPROFILE_FAILURE = "FETCH_USERPROFILE_FAILURE";
@@ -34,8 +33,7 @@ export const logIn = (passphraselogin, history) => {
         const { publicKey, address } =  getAddressAndPublicKeyFromPassphrase(passphraselogin)
         const account = { passphrase: passphraselogin, publicKey, address }
         dispatch(receiveUserLogIn(account));
-        setUser(address)
-        setUser2(JSON.stringify(account))
+        setUser(JSON.stringify(account))
         history.push("/home");
       } catch (error) {
         dispatch(fetchUserProfileFailure(error))

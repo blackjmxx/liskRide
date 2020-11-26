@@ -1,10 +1,10 @@
 import React from 'react'
 
 import { Redirect } from "react-router-dom";
-import { getUser2 } from '../../../utils/storage';
+import { getUser } from '../../../utils/storage';
 
 const GlobalRequireAuth = props => {
-  if (!getUser2()) {
+  if (!getUser()) {
     return (<Redirect to={'/home/params'}/>)
   }
   return (props.children);

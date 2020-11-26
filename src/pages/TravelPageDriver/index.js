@@ -6,7 +6,7 @@ import GlobalRequireAuth from "../../pages/SettingsPage/GlobalRequireAuth";
 import {
   InformationContainer,
 } from "../SettingsPage/LoginForm/style";
-import { getUser2 } from "../../utils/storage";
+import { getUser } from "../../utils/storage";
 import { connect } from "react-redux";
 import Avatar from 'react-avatar';
 
@@ -33,7 +33,7 @@ class TravelPageDriver extends Component {
   };
 
   componentDidMount() {
-    let user = JSON.parse(getUser2());
+    let user = JSON.parse(getUser());
     if(user){
       this.setState({isLoading:true})
 

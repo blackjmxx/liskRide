@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import Loadable from 'react-loadable';
 import {
   setClientManifest,
-  getUser2
+  getUser
 } from "../../utils/storage";
 
 import MenuBar from "../../components/MenuBar/Menubar";
@@ -18,10 +18,10 @@ class SettingsPage extends Component {
   };
   componentDidMount = () => {
     UserInformationLoadable.preload();
-    let user = JSON.parse(getUser2());
+    let user = JSON.parse(getUser());
     
-    if (getUser2()) {
-      this.props.receiveUserLogIn(JSON.parse(getUser2()));
+    if (getUser()) {
+      this.props.receiveUserLogIn(JSON.parse(getUser()));
       this.props.loadUserBalance(user.address)
     }
   };

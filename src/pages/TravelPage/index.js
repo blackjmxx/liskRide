@@ -15,7 +15,7 @@ import {
   PersonIcon,
   WarningImageContainer,
 } from "../SettingsPage/LoginForm/style";
-import { getUser2 } from "../../utils/storage";
+import { getUser } from "../../utils/storage";
 import { connect } from "react-redux";
 import TravelModal from "../../components/TravelModal/TravelModal";
 
@@ -59,7 +59,7 @@ class TravelPage extends Component {
 
   componentDidMount() {
     
-    let user = JSON.parse(getUser2());
+    let user = JSON.parse(getUser());
     if (!user) {
       return (<Redirect to={'/home/params'}/>)
     }
@@ -82,7 +82,7 @@ class TravelPage extends Component {
   
   handleTravelAction= () => {
     
-    let user = JSON.parse(getUser2());
+    let user = JSON.parse(getUser());
     
     const { mytravels, selectedTravel } = this.state;
     

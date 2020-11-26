@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { getUser2 } from "../../utils/storage";
+import { getUser } from "../../utils/storage";
 
 import {
   Input,
@@ -39,7 +39,7 @@ class CarManager extends Component {
 
   handleCreate = () => {
     const {numberPlate,carModel} = this.state;
-    let user = JSON.parse(getUser2());
+    let user = JSON.parse(getUser());
     const registerCarTransaction = new RegisterCarTransaction({
       asset: {
         carId : user.address,
