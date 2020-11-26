@@ -28,7 +28,6 @@ export const receiveUserData = (data = {balance:'0', numberPlate:'', carModel:''
 export const logIn = (passphraselogin, history) => {
   return dispatch => {
     dispatch(fetchUserProfileRequest());
-
       try {
         const { publicKey, address } =  getAddressAndPublicKeyFromPassphrase(passphraselogin)
         const account = { passphrase: passphraselogin, publicKey, address }

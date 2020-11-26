@@ -52,13 +52,13 @@ class HomePage extends Component {
 
     this.setState({isLoading:true})
     let destinationP = fetch(
-      `http://35.228.19.100:2020/extended-api/accounts?asset=destination&contains=${destination}`
+      `http://localhost:2020/extended-api/accounts?asset=destination&contains=${destination}`
     );
     let pickUpLocationP = fetch(
-      `http://35.228.19.100:2020/extended-api/accounts?asset=pickUpLocation&contains=${pickUpLocation}`
+      `http://localhost:2020/extended-api/accounts?asset=pickUpLocation&contains=${pickUpLocation}`
     );
     let pickUpDateP = fetch(
-      `http://35.228.19.100:2020/extended-api/accounts?asset=pickUpDate&contains=${pickUpDate}`
+      `http://localhost:2020/extended-api/accounts?asset=pickUpDate&contains=${pickUpDate}`
     );
 
     var search = {

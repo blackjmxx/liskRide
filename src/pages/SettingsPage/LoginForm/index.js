@@ -32,13 +32,11 @@ class LoginForm extends Component {
   }
 
   handleRegister = () => {
-    const { email, password, password2 }  = this.state;
-
-    if (password !== password2) {
-      return this.props.displayError({ message: "Password not match" });
+    const { registeraddress, registerpassphrase }  = this.state;
+    if (!registeraddress || !registerpassphrase) {
+      return this.props.displayError({ message: "Missing field(s)" });
     }
-
-    this.props.registerUser(email, password, null, this.props.history);
+    this.props.logIn(registerpassphrase, this.props.history);
   };
   
   handleChange = e => {
@@ -49,6 +47,11 @@ class LoginForm extends Component {
 
   handleLogin = () => {
     const { loginpassphrase } = this.state;
+
+    if (!loginpassphrase) {
+      return this.props.displayError({ message: "Missing field(s)" });
+    }
+    
     this.props.logIn(loginpassphrase, this.props.history);
   };
 
