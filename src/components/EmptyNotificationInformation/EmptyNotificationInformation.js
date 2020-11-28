@@ -4,7 +4,7 @@ export const EmptyNotificationInformation = () => {
     return (
         <>
         <EmptyNotificationsContainer>
-        <LoginInputsContainer>
+        <Container>
               <SecondInputContainer>
                 <AlgoliaPlaces
                   placeholder="Write depart address"
@@ -132,7 +132,7 @@ export const EmptyNotificationInformation = () => {
                   <FormattedMessage id={"global.search"} />
                 </BlueButtonLoading>
               </ButtonContainer>
-            </LoginInputsContainer> 
+            </Container> 
         </EmptyNotificationsContainer>
         <MenuBar />
         </>

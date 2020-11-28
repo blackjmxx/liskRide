@@ -6,7 +6,7 @@ import {
   ToggleButtonContainer,
   IconForm,
   SecondInputContainer,
-  LoginInputsContainer,
+  Container,
   ButtonContainer,
   Icon3,
   IconContainer
@@ -70,7 +70,7 @@ class CarManager extends Component {
             <Icon3 src={closeIcon} />
           </IconContainer>
         </Link>
-        <LoginInputsContainer>
+        <Container>
           <SecondInputContainer>
             <Input
               name="numberPlate"
@@ -79,9 +79,6 @@ class CarManager extends Component {
               value={this.state.numberPlate}
               placeholder="Number plate"
             />
-            <ToggleButtonContainer>
-              <IconForm src={calendar} />
-            </ToggleButtonContainer>
           </SecondInputContainer>
           <SecondInputContainer>
             <Input
@@ -91,9 +88,6 @@ class CarManager extends Component {
               value={this.state.carModel}
               placeholder="Car model"
             />
-            <ToggleButtonContainer>
-              <IconForm src={calendar} />
-            </ToggleButtonContainer>
           </SecondInputContainer>
           <ButtonContainer>
             <BlueButtonLoading
@@ -103,7 +97,7 @@ class CarManager extends Component {
               <FormattedMessage id={"global.update"} />
             </BlueButtonLoading>
           </ButtonContainer>
-        </LoginInputsContainer>
+        </Container>
       </CommonContainerView>
     );
   }

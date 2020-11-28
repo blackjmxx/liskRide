@@ -5,7 +5,7 @@ import {
     ToggleButtonContainer,
     Icon2,
     SecondInputContainer,
-    LoginInputsContainer,
+    Container,
   } from "../HomePage/styles";
 import { CommonContainerView } from '../common/commonContainer';
 import { Link } from 'react-router-dom'
@@ -45,7 +45,7 @@ class Travel extends Component {
                 </Link>
                 <ToggleButtonContainer>
                 <HomeContainer>
-          <LoginInputsContainer>
+          <Container>
             <Link
               style={{
                 display: "flex",
@@ -193,7 +193,7 @@ class Travel extends Component {
                   <FormattedMessage id={"global.search"} />
                 </BlueButtonLoading>
               </ButtonContainer>
-          </LoginInputsContainer>
+          </Container>
         </HomeContainer>
                </ToggleButtonContainer>
             </CommonContainerView>

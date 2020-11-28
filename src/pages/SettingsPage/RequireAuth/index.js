@@ -8,11 +8,7 @@ const RequireAuth = props => {
   if (!getUser()) {
     return <LoginForm {...props}/>
   }
-  
-  // if (Parse.User.current() && !Parse.User.current().get('emailVerified')) {
-  //   return <LoginForm {...props} isVerified={false}/>
-  // }
-  
+    
   return (props.children);
 };
 

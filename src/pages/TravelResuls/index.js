@@ -11,7 +11,7 @@ import BookModal from "../../components/BookModal/BookModal";
 
 import { IconContainer, Icon } from "../SettingsPage/LoginForm/style";
 
-import { LoginInputsContainer } from "../../components/common/styles";
+import { Container } from "../../components/common/styles";
 
 import {
   GiftItemContainer,
@@ -120,7 +120,7 @@ class TravelResuls extends Component {
               <Icon src={closeIcon} />
             </IconContainer>
           </Link>
-          <LoginInputsContainer>
+          <Container>
             <ItemsContainer>
               {travels.map((travel, i) => (
                 <GiftItemContainer
@@ -133,7 +133,7 @@ class TravelResuls extends Component {
                   </GiftImageContainer>
                   <GiftItemContentContainer>
                     <Title>
-                      {travel.destination} {"-->"} {travel.pickUpLocation}{" "}
+                      {travel.pickUpLocation} {"-->"} {travel.destination}{" "}
                     </Title>
                     <Content>
                       <b>Price:{travel.pricePerSeat} LSK</b>
@@ -145,7 +145,7 @@ class TravelResuls extends Component {
                 </GiftItemContainer>
               ))}
             </ItemsContainer>
-          </LoginInputsContainer>
+          </Container>
         </NotificationsViewContainer>
         <Menubar />
       </>

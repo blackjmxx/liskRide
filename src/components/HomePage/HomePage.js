@@ -15,7 +15,7 @@ import {
   Input,
   ButtonContainer,
   SecondInputContainer,
-  LoginInputsContainer,
+  Container,
   ToggleButtonContainer,
   IconForm,
   SecondInputContainer2,
@@ -142,7 +142,7 @@ class HomePage extends Component {
             <ImageContainer>
                 <Image src={car} />
               </ImageContainer>
-            <LoginInputsContainer>
+            <Container>
 
               <SecondInputContainer2>
                 <AlgoliaPlaces
@@ -211,7 +211,7 @@ class HomePage extends Component {
                   <FormattedMessage id={"global.search"} />
                 </BlueButtonLoading>
               </ButtonContainer>
-            </LoginInputsContainer>
+            </Container>
           </HomeContainer>
           <Menubar />
         </GlobalRequireAuth>

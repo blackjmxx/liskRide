@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import {
   Input,
   ButtonContainer,
-  LoginInputsContainer,
+  Container,
   FirstInputContainer,
   SecondInputContainer,
   Icon,
@@ -18,7 +18,7 @@ const LoginTab = (props) => {
 
   return (
     <>
-      <LoginInputsContainer>
+      <Container>
         <SecondInputContainer>
           <Input
             name="loginpassphrase"
@@ -57,7 +57,7 @@ const LoginTab = (props) => {
             <FormattedMessage id={"global.login"} />
           </BlueButtonLoading>
         </ButtonContainer>
-      </LoginInputsContainer>
+      </Container>
     </>
   );
 };

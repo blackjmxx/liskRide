@@ -6,13 +6,14 @@ import { Mnemonic } from '@liskhq/lisk-passphrase';
 import { getAddressAndPublicKeyFromPassphrase } from '@liskhq/lisk-cryptography';
 import { getUser } from "../../utils/storage";
 import { networkIdentifier , dateToLiskEpochTimestamp} from "../../utils";
+import seat from "../../assets/icons/seat.svg";
 
 import {
   Input,
   ToggleButtonContainer,
   IconForm,
   SecondInputContainer,
-  LoginInputsContainer,
+  Container,
   ButtonContainer,
   IconContainer,
   Icon
@@ -111,7 +112,7 @@ class TravelManager extends Component {
             <Icon src={closeIcon} />
           </IconContainer>
         </Link>
-        <LoginInputsContainer>
+        <Container>
           <SecondInputContainer>
             <AlgoliaPlaces
               key="destinationId"
@@ -149,20 +150,7 @@ class TravelManager extends Component {
               onChange={(data) =>
                 this.handleChange({ name: "pickUpLocation", data: data })
               }
-              onCursorChanged={({
-                rawAnswer,
-                query,
-                suggestion,
-                suggestonIndex,
-              }) =>
-                console.log(
-                  "Fired when arrows keys are used to navigate suggestions."
-                )
-              }
               onClear={() => console.log("Fired when the input is cleared.")}
-              onLimit={({ message }) =>
-                console.log("Fired when you reached your current rate limit.")
-              }
               onError={({ message }) =>
                 console.log(
                   "Fired when we could not make the request to Algolia Places servers for any reason but reaching your rate limit."
@@ -191,7 +179,7 @@ class TravelManager extends Component {
               placeholder="Price per seat"
             />
             <ToggleButtonContainer>
-              <IconForm src={calendar} />
+             LSK
             </ToggleButtonContainer>
           </SecondInputContainer>
           <SecondInputContainer>
@@ -204,7 +192,7 @@ class TravelManager extends Component {
               placeholder="Seat count"
             />
             <ToggleButtonContainer>
-              <IconForm src={calendar} />
+              <IconForm src={seat} />
             </ToggleButtonContainer>
           </SecondInputContainer>
           <ButtonContainer>
@@ -215,7 +203,7 @@ class TravelManager extends Component {
               <FormattedMessage id={"global.addTravel"} />
             </BlueButtonLoading>
           </ButtonContainer>
-        </LoginInputsContainer>
+        </Container>
       </CommonContainerView>
     );
   }

@@ -1,19 +1,19 @@
 import React from "react";
 import { PopupViewContainer } from "../popup/style";
 import { FormattedMessage } from 'react-intl';
-import { Text, LogoutPopupContent, LogoutPopupContainer, ButtonContainer } from "../../components/LogoutPopup/style";
+import { TextBubTitle, LogoutPopupContent, LogoutPopupContainer, ButtonContainer , TextSubTitle} from "../../components/LogoutPopup/style";
 import { BlueButton } from '../../components/common/styles'
 import '../popup/index.scss';
 import './style/calendar.css'
 
-const TravelModal = ({closeModal, handleAction, travelId, active, travel, Title='Start Travel'}) => {
+const TravelModal = ({closeModal, handleAction, active, Title, travel}) => {
     return (
         <PopupViewContainer className={active ? 'active' : null }>
          <LogoutPopupContainer>
                 <LogoutPopupContent>
-                    <Text>
-                        {Title}
-                    </Text>
+                    <TextSubTitle>
+                        Start travel with driver:{travel.asset.carId}
+                    </TextSubTitle> 
                 </LogoutPopupContent>
                 <ButtonContainer>
                     <BlueButton onClick={handleAction}><FormattedMessage id={"global.yes"} /></BlueButton>
@@ -24,5 +24,4 @@ const TravelModal = ({closeModal, handleAction, travelId, active, travel, Title=
     );
 }
 
-export default TravelModal
-;
+export default TravelModal;

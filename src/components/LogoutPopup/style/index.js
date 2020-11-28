@@ -39,6 +39,15 @@ export const Text = styled.div`
     text-align: center;
     color: ${({theme}) => theme.gray};
 `
+
+export const TextSubTitle = styled.div`
+    font-family: 'Avenir Next';
+    line-height: 28px;
+    font-size: 16px;
+    text-align: center;
+    color: ${({theme}) => theme.gray};
+`
+
 export const ButtonContainer = styled.div`
     display: flex;
     height: 20%;

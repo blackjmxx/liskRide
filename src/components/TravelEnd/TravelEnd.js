@@ -41,11 +41,11 @@ class TravelEnd extends Component {
     const { travelId } = this.props.match.params;
     if(!travelId) return
     this.setState({isLoading:true})
-
+    debugger
     api.accounts
       .get({ address: travelId })
       .then((response) => {
-        
+        debugger
         this.setState({ travel: response.data[0].asset || {}});
       })
       .catch((err) => {

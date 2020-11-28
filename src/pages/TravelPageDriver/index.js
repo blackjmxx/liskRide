@@ -40,7 +40,6 @@ class TravelPageDriver extends Component {
       api.accounts
         .get({ address: user.address })
         .then((response) => {
-          
           this.setState({ mytravels: response.data[0].asset.driverTravels || []});
         })
         .catch((err) => {
@@ -85,6 +84,9 @@ class TravelPageDriver extends Component {
                   <Content><b>Price:{travel.pricePerSeat} LSK</b></Content>
                   <TimeoutContentContainer>
                     <Content>Start - {travel.pickUpDate}</Content>
+                  </TimeoutContentContainer>
+                  <TimeoutContentContainer>
+                    <Content>Booked - {!travel.travelPassengerBalances ? 0 : travel.travelPassengerBalances.length}</Content>
                   </TimeoutContentContainer>
                 </GiftItemContentContainer>
               </GiftItemContainer>

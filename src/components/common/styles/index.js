@@ -251,7 +251,7 @@ export const SecondInputContainer2 = styled(FirstInputContainer)`
     width:100%;
 `
 
-export const LoginInputsContainer = styled.div`
+export const Container = styled.div`
     display: flex;
     width: 85%;
     height: 55%;
