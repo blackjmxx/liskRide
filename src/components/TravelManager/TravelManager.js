@@ -2,11 +2,11 @@ import React, { Component } from "react";
 import AlgoliaPlaces from "algolia-places-react";
 import CalendarModal from "../../components/CalendarModal/CalendarModal";
 import Moment from "moment";
+import { connect } from "react-redux";
 import { Mnemonic } from '@liskhq/lisk-passphrase';
 import { getAddressAndPublicKeyFromPassphrase } from '@liskhq/lisk-cryptography';
 import { getUser } from "../../utils/storage";
 import { networkIdentifier , dateToLiskEpochTimestamp} from "../../utils";
-import seat from "../../assets/icons/seat.svg";
 
 import {
   Input,
@@ -27,11 +27,11 @@ import "react-calendar/dist/Calendar.css";
 import "./style/calendar.css";
 import { CommonContainerView } from "../common/commonContainer";
 import { Link } from "react-router-dom";
-import closeIcon from "../../assets/icons/closeIcon.svg";
 import { FormattedMessage } from "react-intl";
 
-import { connect } from "react-redux";
 import calendar from "../../assets/icons/calendar.svg";
+import seat from "../../assets/icons/seat.svg";
+import closeIcon from "../../assets/icons/closeIcon.svg";
 
 const date = new Date();
 
@@ -149,12 +149,6 @@ class TravelManager extends Component {
               }}
               onChange={(data) =>
                 this.handleChange({ name: "pickUpLocation", data: data })
-              }
-              onClear={() => console.log("Fired when the input is cleared.")}
-              onError={({ message }) =>
-                console.log(
-                  "Fired when we could not make the request to Algolia Places servers for any reason but reaching your rate limit."
-                )
               }
             />
           </SecondInputContainer>
