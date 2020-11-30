@@ -116,7 +116,6 @@ class RegisterTravelransaction extends BaseTransaction {
   undoAsset(store) {
     const errors = [];
 
-    /* --- Revert producer account --- */
     const travel = store.account.get(this.asset.carId);
     const originalTravelAccount = { ...travel, asset: null };
     store.account.set(travel.address, originalTravelAccount);

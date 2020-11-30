@@ -37,7 +37,7 @@ class Travel extends Component {
     }
     render() {
         return (
-            <CommonContainerView>
+      <CommonContainerView>
                 <Link to='/home'>
                     <IconContainer>
                         <Icon src={closeIcon} />

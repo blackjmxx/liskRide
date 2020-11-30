@@ -59,59 +59,47 @@ class RegisterCarTransaction extends BaseTransaction {
                 )
             );
         }
+        if (!this.asset.email || typeof this.asset.email !== 'string') {
+          errors.push(
+              new TransactionError(
+                  'Invalid "asset.email" defined on transaction',
+                  this.id,
+                  '.asset.email',
+                  this.asset.email,
+                  'A string value'
+              )
+          );
+      }
         return errors;
     }
 
     applyAsset(store) {
         const errors = [];
-        const car = store.account.get(this.asset.carId);
-        if (car.asset.senderId) {
-          const updatedCarAccount = {
-            ...car,
-            ...{
-              asset: {
-                senderId: this.senderId,
-                driverAdress: this.asset.driverAdress,
-                numberPlate: this.asset.numberPlate,
-                carModel: this.asset.carModel,
-                type: "Car",
-              },
+        const user = store.account.get(this.asset.carId);
+
+        const updatedUserAccount = {
+          ...user,
+          ...{
+            asset: {
+              senderId: this.senderId,
+              driverAdress: this.asset.driverAdress,
+              numberPlate: this.asset.numberPlate,
+              carModel: this.asset.carModel,
+              email:this.asset.email
             },
-          };
-          store.account.set(car.address, updatedCarAccount);
-        } else {
-          if (car.asset.senderId === this.asset.driverAdress) {
-            const updatedCarAccount = {
-              ...car,
-              ...{
-                asset: {
-                  driverAdress: this.asset.driverAdress,
-                  numberPlate: this.asset.numberPlate,
-                  carModel: this.asset.carModel,
-                  type: "Car",
-                },
-              },
-            };
-            store.account.set(car.address, updatedCarAccount);
-          } else {
-            errors.push(
-              new TransactionError(
-                "car has already been registered",
-                car.asset.name
-              )
-            );
-          }
-        }
+          },
+        };
+        store.account.set(user.address, updatedUserAccount);
+      
         return errors;
       }
 
     undoAsset(store) {
         const errors = [];
 
-        /* --- Revert producer account --- */
-        const car = store.account.get(this.asset.carId);
-        const originalCarAccount = { ...car, asset: null };
-        store.account.set(car.address, originalCarAccount);
+        const user = store.account.get(this.asset.carId);
+        const originalUserAccount = { ...user, asset: null };
+        store.account.set(user.address, originalUserAccount);
         
         return errors;
     }

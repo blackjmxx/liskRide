@@ -113,6 +113,7 @@ class TravelResuls extends Component {
               handleAction={this.handleBook}
               handleChangeSeatCount={this.handleChangeSeatCount}
               isBookingLoading={isBookingLoading}
+              driverAddress={travels[selectedTravel].carId}
             ></BookModal>
           )}
           <Link to="/home">

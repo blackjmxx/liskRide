@@ -41,11 +41,9 @@ class TravelEnd extends Component {
     const { travelId } = this.props.match.params;
     if(!travelId) return
     this.setState({isLoading:true})
-    debugger
     api.accounts
       .get({ address: travelId })
       .then((response) => {
-        debugger
         this.setState({ travel: response.data[0].asset || {}});
       })
       .catch((err) => {
@@ -86,7 +84,7 @@ class TravelEnd extends Component {
   }
 
   render() {
-    const {travelDriverBalance = []} = this.state.travel
+    const {travelDriverBalance = [], travelPassengerBalances = []} = this.state.travel
     return (
       <NotificationsViewContainer2>
         {this.state.showCalendarModal && (
@@ -116,6 +114,22 @@ class TravelEnd extends Component {
                         <Rating icon='star' defaultRating={tdb.rating || 0} maxRating={5}  onRate={(e, { rating, maxRating }) => this.handleRate(e, { rating, maxRating }, tdb.passengerAddress)}/>
                       </div>
                         <Button disabled={tdb.amountTravel === '0'} onClick={() => this.rateAndWidthDraw(tdb.passengerAddress)}>Rate and widthdraw</Button>
+                    </div>
+            })}
+             {travelPassengerBalances.map((tdb, i) => {
+              return <div>
+                        <div>
+                          User:{tdb.passengerAddress}
+                        </div>
+                        <div>
+                          Email:{tdb.email}
+                        </div>
+                        <div>
+                          SeatCount:{tdb.seatCount}
+                        </div>
+                        <div>
+                          Total:{tdb.amountTravel}
+                        </div>
                     </div>
             })}
           </div>

@@ -3,8 +3,6 @@ import { getUser } from "../../utils/storage";
 
 import {
   Input,
-  ToggleButtonContainer,
-  IconForm,
   SecondInputContainer,
   Container,
   ButtonContainer,
@@ -23,7 +21,6 @@ import closeIcon from "../../assets/icons/closeIcon.svg";
 import { FormattedMessage } from "react-intl";
 
 import { connect } from "react-redux";
-import calendar from "../../assets/icons/calendar.svg";
 
 class CarManager extends Component {
   state = {
@@ -38,13 +35,15 @@ class CarManager extends Component {
   }
 
   handleCreate = () => {
-    const {numberPlate,carModel} = this.state;
+    const {numberPlate,carModel, email} = this.state;
+    // check email
     let user = JSON.parse(getUser());
     const registerCarTransaction = new RegisterCarTransaction({
       asset: {
         carId : user.address,
         numberPlate,
-        carModel
+        carModel,
+        email
       },
       networkIdentifier: networkIdentifier,
       timestamp: dateToLiskEpochTimestamp(new Date()),
@@ -63,6 +62,7 @@ class CarManager extends Component {
   }
 
   render() {
+    debugger
     return (
       <CommonContainerView>
         <Link to="/home/params">
@@ -71,6 +71,15 @@ class CarManager extends Component {
           </IconContainer>
         </Link>
         <Container>
+        <SecondInputContainer>
+            <Input
+              name="email"
+              type={"email"}
+              onChange={this.handleChange}
+              value={this.state.email}
+              placeholder="Email"
+            />
+          </SecondInputContainer>
           <SecondInputContainer>
             <Input
               name="numberPlate"

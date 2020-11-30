@@ -72,6 +72,7 @@ class RegisterCarTransaction extends BaseTransaction {
               senderId: this.senderId,
               numberPlate: this.asset.numberPlate,
               carModel: this.asset.carModel,
+              email:this.asset.email
           }
         };
         

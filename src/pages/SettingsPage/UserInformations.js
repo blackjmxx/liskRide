@@ -65,6 +65,10 @@ class Informations extends Component {
               </ContentInformation>
             </InformationItemContainer>
             <InformationItemContainer>
+              <HeaderInfromation><FormattedMessage id={"paramsPage.email"} /></HeaderInfromation>
+              <ContentInformation>{user.email}</ContentInformation>
+            </InformationItemContainer>
+            <InformationItemContainer>
               <HeaderInfromation><FormattedMessage id={"paramsPage.numberPlate"} /></HeaderInfromation>
               <ContentInformation>{user.numberPlate}</ContentInformation>
             </InformationItemContainer>
@@ -108,7 +112,7 @@ const UserInformations = (props) => {
                   color={'#F1C310'}
                   onClick={() => props.history.push('/home/car/manage')}
                 >
-                  <FormattedMessage id={"paramsPage.manageCar"} />
+                  <FormattedMessage id={"paramsPage.manageAccount"} />
             </BlueButtonLoading>
         </InformationContainer>
       </ItemsContainer>

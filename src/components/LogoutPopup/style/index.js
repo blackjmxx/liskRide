@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const LogoutPopupContainer = styled.div`    
+export const PopupContainer = styled.div`    
     display: flex;
     position: relative;
     flex-direction: column;
@@ -11,6 +11,7 @@ export const LogoutPopupContainer = styled.div`
     background-color: ${({theme}) => theme.menuBarBg};
     box-shadow: 0 2px 32px rgba(50, 146, 255, 0.2);
     border-radius: 12px;
+    padding:2%;
 `
 
 export const LogoutPopupCalendar = styled.div`    
@@ -25,7 +26,7 @@ export const LogoutPopupCalendar = styled.div`
     box-shadow: 0 2px 32px rgba(50, 146, 255, 0.2);
     border-radius: 12px;
 `
-export const LogoutPopupContent = styled.div`
+export const PopupContent = styled.div`
     display: flex;
     width: 80%;
     height: 50%;

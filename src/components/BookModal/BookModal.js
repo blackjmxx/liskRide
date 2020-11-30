@@ -2,11 +2,11 @@ import React from "react";
 import { PopupViewContainer } from "../popup/style";
 import { FormattedMessage } from "react-intl";
 import {
-  Text,
-  LogoutPopupContent,
-  LogoutPopupContainer,
+  TextSubTitle,
+  PopupContent,
+  PopupContainer,
   ButtonContainer,
-} from "../LogoutPopup/style";
+} from "../LogoutPopup/style";//todo
 import {
   BlueButton,
   SecondInputContainer
@@ -20,10 +20,10 @@ const BookModal = ({
   closeModal,
   handleAction,
   active,
-  Title = "Book Travel",
   availableSeatCount,
   handleChangeSeatCount,
-  isBookingLoading
+  isBookingLoading,
+  driverAddress
 }) => {
 
 const options = []
@@ -36,10 +36,12 @@ const options = []
 
   return (
     <PopupViewContainer className={active ? "active" : null}>
-      <LogoutPopupContainer>
-        <LogoutPopupContent>
-          <Text>{Title}</Text>
-        </LogoutPopupContent>
+      <PopupContainer>
+        <PopupContent>
+          <TextSubTitle>
+              Book travel with driver:{driverAddress}
+          </TextSubTitle> 
+        </PopupContent>
         <SecondInputContainer>
             Seat count :
             <Select placeholder='Select your country' options={options} onChange={handleChangeSeatCount}/>
@@ -54,7 +56,7 @@ const options = []
             <FormattedMessage id={"global.cancel"} />
           </BlueButton>
         </ButtonContainer>
-      </LogoutPopupContainer>
+      </PopupContainer>
     </PopupViewContainer>
   );
 };

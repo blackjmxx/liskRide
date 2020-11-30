@@ -141,7 +141,7 @@ class BookTravelransaction extends BaseTransaction {
       const foundTravelPassengerBalance = travelPassengerBalances[foundTravelPassengerBalanceIndex];
 
       if(!foundTravelPassengerBalance){
-        travelPassengerBalances.push({passengerAddress:passenger.address, seatCount:this.asset.seatCount, amountTravel:amountTravel.toString()})  
+        travelPassengerBalances.push({passengerAddress:passenger.address, passengerContact:passenger.email,seatCount:this.asset.seatCount, amountTravel:amountTravel.toString()})  
       }else{
         travelPassengerBalances[foundTravelPassengerBalanceIndex] = {...foundTravelPassengerBalance, seatCount:utils.BigNum(foundTravelPassengerBalance.seatCount).add(this.asset.seatCount).toString(), amountTravel:utils.BigNum(foundTravelPassengerBalance.amountTravel).add(new utils.BigNum(amountTravel)).toString()}
       }

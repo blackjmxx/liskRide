@@ -11,6 +11,7 @@ import Moment from "moment";
 import _ from "lodash";
 import CalendarModal from "../../components/CalendarModal/CalendarModal";
 import "./styles/custom.css"
+import { CommonContainerView } from "../common/commonContainer";
 import {
   Input,
   ButtonContainer,
@@ -129,7 +130,7 @@ class HomePage extends Component {
     return (
       <>
         <GlobalRequireAuth {...this.props}>
-          <HomeContainer>
+        <CommonContainerView>
           {this.state.showCalendarModal && (
           <CalendarModal
             closeModal={() => this.setState({ showCalendarModal: false })}
@@ -212,7 +213,7 @@ class HomePage extends Component {
                 </BlueButtonLoading>
               </ButtonContainer>
             </Container>
-          </HomeContainer>
+          </CommonContainerView>
           <Menubar />
         </GlobalRequireAuth>
       </>
