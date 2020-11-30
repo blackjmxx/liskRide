@@ -5,7 +5,6 @@ import { TransitionGroup, CSSTransition } from 'react-transition-group'
 
 import Home from '../../containers/Home'
 import Settings from '../../containers/Settings'
-import InfosPage from '../../pages/InfosPage'
 import TravelResuls from '../../pages/TravelResuls'
 import TravelPage from '../../pages/TravelPage'
 import TravelPageDriver from '../../pages/TravelPageDriver'
@@ -63,7 +62,6 @@ function App({ location }){
                 <Section className="page-main-inner">
                   <Switch location={location}>
                     <Route exact path="/home" component={Home} />
-                    <Route exact path="/home/infos" component={InfosPage} />
                     <Route exact path="/home/transfert" component={TransfertPage} />
                     <Route exact path="/home/results" component={TravelResuls} />
                     <Route exact path="/home/car" component={TravelPageDriver} />
