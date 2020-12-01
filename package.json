@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@liskhq/lisk-api-client": "^3.0.1",
+    "@liskhq/lisk-api-client": "^4.0.0",
     "@liskhq/lisk-client": "^4.0.0",
     "algolia-places-react": "^1.6.0",
     "eslint-config-standard": "^14.1.0",
@@ -14,7 +14,7 @@
     "jquery": "^3.4.1",
     "konva": "^4.0.12",
     "lisk-genesis": "^0.1.0",
-    "lisk-sdk": "^3.0.2",
+    "lisk-sdk": "^4.0.0",
     "localforage": "^1.7.3",
     "moment": "^2.24.0",
     "moment-range": "^4.0.2",
