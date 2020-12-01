@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import { Mnemonic } from '@liskhq/lisk-passphrase';
-import { getAddressAndPublicKeyFromPassphrase } from '@liskhq/lisk-cryptography';
+import { passphrase, cryptography, Buffer } from '@liskhq/lisk-client';
 import LoginTab from "./LoginTab/LoginTab";
 import RegisterTab from "./RegisterTab/RegisterTab";
 
@@ -60,8 +59,8 @@ class LoginForm extends Component {
   }
 
   createPassPhrase = () => {
-    let registerpassphrase = Mnemonic.generateMnemonic();
-    const { address, publicKey } = getAddressAndPublicKeyFromPassphrase(registerpassphrase);
+    let registerpassphrase = passphrase.Mnemonic.generateMnemonic();
+    const { address, publicKey } = cryptography.getAddressAndPublicKeyFromPassphrase(registerpassphrase);
     this.setState({ registerpassphrase, registeraddress:address, publicKey })
   }
 

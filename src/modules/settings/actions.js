@@ -1,5 +1,5 @@
 import { setUser } from "../../utils/storage";
-import { getAddressAndPublicKeyFromPassphrase } from '@liskhq/lisk-cryptography';
+import { cryptography } from '@liskhq/lisk-client';
 import { api } from '../../components/Api';
 
 export const FETCH_USERPROFILE_REQUEST = "FETCH_USERPROFILE_REQUEST";
@@ -29,7 +29,7 @@ export const logIn = (passphraselogin, history) => {
   return dispatch => {
     dispatch(fetchUserProfileRequest());
       try {
-        const { publicKey, address } =  getAddressAndPublicKeyFromPassphrase(passphraselogin)
+        const { publicKey, address } =  cryptography.getAddressAndPublicKeyFromPassphrase(passphraselogin)
         const account = { passphrase: passphraselogin, publicKey, address }
         dispatch(receiveUserLogIn(account));
         setUser(JSON.stringify(account))

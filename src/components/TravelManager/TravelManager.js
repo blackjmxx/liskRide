@@ -3,8 +3,7 @@ import AlgoliaPlaces from "algolia-places-react";
 import CalendarModal from "../../components/CalendarModal/CalendarModal";
 import Moment from "moment";
 import { connect } from "react-redux";
-import { Mnemonic } from '@liskhq/lisk-passphrase';
-import { getAddressAndPublicKeyFromPassphrase } from '@liskhq/lisk-cryptography';
+import { passphrase, cryptography } from '@liskhq/lisk-client';
 import { getUser } from "../../utils/storage";
 import { networkIdentifier , dateToLiskEpochTimestamp} from "../../utils";
 
@@ -66,8 +65,8 @@ class TravelManager extends Component {
     this.setState({loading:true})
     const { pickUpLocation, pickUpDate, availableSeatCount, pricePerSeat, destination} = this.state;
 
-    let registerpassphrase = Mnemonic.generateMnemonic();
-    const { address } = getAddressAndPublicKeyFromPassphrase(registerpassphrase);
+    let registerpassphrase = passphrase.Mnemonic.generateMnemonic();
+    const { address } = cryptography.getAddressAndPublicKeyFromPassphrase(registerpassphrase);
     let user = JSON.parse(getUser());
     const registerTravelTransaction = new RegisterTravelTransaction({
       asset: {

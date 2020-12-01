@@ -1,4 +1,4 @@
-import * as cryptography from '@liskhq/lisk-cryptography';
+import {cryptography} from '@liskhq/lisk-client';
 
 export const networkIdentifier = cryptography.getNetworkIdentifier(
   "23ce0366ef0a14a91e5fd4b1591fc880ffbef9d988ff8bebf8f3666b0c09597d",
