@@ -4,7 +4,7 @@ const {
   utils,
 } = require("@liskhq/lisk-transactions");
 
-class BookTravelransaction extends BaseTransaction {
+class BookTravelTransaction extends BaseTransaction {
   static get TYPE() {
     return 32;
   }
@@ -216,4 +216,4 @@ class BookTravelransaction extends BaseTransaction {
   }
 }
 
-module.exports = BookTravelransaction;
+module.exports = BookTravelTransaction;

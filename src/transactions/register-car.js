@@ -1,8 +1,8 @@
-const {
+import {
     BaseTransaction,
     TransactionError,
-    utils
-} = require('@liskhq/lisk-transactions');
+    utils,
+  } from "@liskhq/lisk-transactions";
 
 
 class RegisterCarTransaction extends BaseTransaction {
@@ -106,4 +106,4 @@ class RegisterCarTransaction extends BaseTransaction {
 
 }
 
-module.exports = RegisterCarTransaction;
+export default RegisterCarTransaction

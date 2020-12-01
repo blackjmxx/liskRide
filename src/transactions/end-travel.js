@@ -1,8 +1,8 @@
-const {
+import {
   BaseTransaction,
   TransactionError,
   utils,
-} = require("@liskhq/lisk-transactions");
+} from "@liskhq/lisk-transactions";
 
 class EndTravelTransaction extends BaseTransaction {
   static get TYPE() {
@@ -162,4 +162,4 @@ class EndTravelTransaction extends BaseTransaction {
   }
 }
 
-module.exports = EndTravelTransaction;
+export default EndTravelTransaction;
