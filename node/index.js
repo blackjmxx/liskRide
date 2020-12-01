@@ -11,6 +11,8 @@ const { ExtendedHTTPApiModule } = require('@moosty/lisk-extended-api');
 
 configDevnet.app.label = 'lisk-ride';
 configDevnet.modules.http_api.access.public = true;
+configDevnet.modules.http_api.access.whiteList = ['lisk-ride.com'];
+
 // configDevnet.components.storage.host = 'db';
 const app = new Application(genesisBlockDevnet, configDevnet);
 
