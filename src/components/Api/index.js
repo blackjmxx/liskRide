@@ -1,5 +1,5 @@
 import { APIClient } from '@liskhq/lisk-api-client';
 
-const API_BASEURL = 'http://161.35.97.222/api-main';
+const API_BASEURL = 'https://lisk-ride.com/api-main';
 
 export const api = new APIClient([API_BASEURL]);
