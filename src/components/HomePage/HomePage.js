@@ -53,13 +53,13 @@ class HomePage extends Component {
 
     this.setState({isLoading:true})
     let destinationP = fetch(
-      `http://localhost:2020/extended-api/accounts?asset=destination&contains=${destination}`
+      `http://161.35.97.222/api/accounts?asset=destination&contains=${destination}`
     );
     let pickUpLocationP = fetch(
-      `http://localhost:2020/extended-api/accounts?asset=pickUpLocation&contains=${pickUpLocation}`
+      `http://161.35.97.222/api/extended-api/accounts?asset=pickUpLocation&contains=${pickUpLocation}`
     );
     let pickUpDateP = fetch(
-      `http://localhost:2020/extended-api/accounts?asset=pickUpDate&contains=${pickUpDate}`
+      `http://161.35.97.222/api/extended-api/accounts?asset=pickUpDate&contains=${pickUpDate}`
     );
 
     var search = {
